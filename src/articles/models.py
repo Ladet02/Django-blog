@@ -9,6 +9,7 @@ User = get_user_model()
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, default="Anonymous")
     profile_picture = models.ImageField()
 
     def __str__(self):
@@ -16,10 +17,13 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    title: models.CharField(max_length=30)
+    title = models.CharField(max_length=30, default="Random")
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = "Categories"
 
 
 class Article(models.Model):
