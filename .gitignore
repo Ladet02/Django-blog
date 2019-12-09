@@ -2,4 +2,6 @@
 /.vscode
 
 /src/static/images
-/src/static_root/images
+
+/static_root/images
+/media_root
