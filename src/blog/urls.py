@@ -18,15 +18,15 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from articles.views import index, article, articles, about, search
+from articles.views import index, article, about, search, browse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    path('article/', article),
-    path('articles/', articles),
+    path('article/<id>/', article, name="article-detail"),
     path('about/', about),
-    path('search/', search),
+    path('browse/', browse),
+    path('search/', search, name="search"),
 ]
 
 if settings.DEBUG:

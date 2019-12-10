@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+
 .wp-block-audio figcaption {
     margin-top: .5em;
     margin-bottom: 1em;
@@ -12356,7 +12358,9 @@ input[type="text"] {
 }
 
 .blog_post_banner.blog_post_image img {
-    border-radius: 10px
+    border-radius: 10px;
+
+    margin: 0 auto
 }
 
 .blog_post_banner.blog_post_video {
@@ -13002,6 +13006,11 @@ input[type="text"] {
 
 .pagination .current .screen-reader-text {
     position: static!important
+}
+
+.navigation.pagination .nav-links {
+    text-align: center;
+    margin-bottom: 50px
 }
 
 .navigation.pagination .nav-links .page-numbers {

@@ -37,13 +37,19 @@
                 id="menu-item-71"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
               >
-                <a href="/articles">Articles</a>
+                <a href="/browse">Articles</a>
               </li>
               <li
                 id="menu-item-71"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
               >
                 <a href="/about">About Me</a>
+              </li>
+              <li
+                id="menu-item-71"
+                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
+              >
+                <a href="/about">Subscribe</a>
               </li>
             </ul>
           </div>
@@ -98,16 +104,15 @@
               class="search clearfix animated searchHelperFade"
               method="get"
               id="searchform"
-              action=""
+              action="{% url 'search' %}"
             >
               <input
                 class="col-md-12 search_text"
                 id="appendedInputButton"
                 placeholder="Hit enter to search"
                 type="text"
-                name="s"
+                name="q"
               />
-              <input type="hidden" name="post_type" value="post" />
               <i class="fa fa-search">
                 <input
                   type="submit"
@@ -151,7 +156,7 @@
             <a
               class="asalah_logo default_logo retina_logo"
               title="Writing"
-              href=""
+              href="/"
               rel="home"
             >
               <img

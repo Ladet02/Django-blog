@@ -1,29 +1,61 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
+<div id="page" class="hfeed site">
+    <!-- start site main container -->
+    <div class="site_main_container">
+
+        <!-- start stie content -->
+        <section id="content" class="site_content">
+            <div class="container">
+                
+                    <!-- Title screen-reader-text -->
+                    <h4 class="page-title screen-reader-text">Search results</h4>
+
 
 <main class="main_content col-md-12">
+
+    {% comment %} <h1>Results</h1> {% endcomment %}
+
     <!-- For Page Pagination -->
-    <div class="blog_posts_wrapper blog_posts_list clearfix  masonry_blog_style narrow_content_width" style="position: relative; height: 2094.02px;">
-        <article id="post-74" class="blog_post_container post-74 post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-people post_format-post-format-image" style="position: absolute; left: 0px; top: 0px;">
+    <div class="blog_posts_wrapper blog_posts_list clearfix  masonry_blog_style narrow_content_width wp-block-columns" >
+
+
+        {% for article in search_results %}
+
+        <article id="" class="blog_post_container post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-people post_format-post-format-image" >
             <div class="blog_post clearfix">
                 <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Cheerful Loving Couple Bakers Drinking Coffee"><img width="293" height="199" src="" class="img-responsive  wp-post-image lazyloaded" alt=""></a>
+                    <a href="{{ article.get_absolute_url }}" title="{{article.title}}"><img style="width:293px; height:199px" src="{{article.thumbnail.url}}" class="img-responsive  wp-post-image lazyloaded" alt=""></a>
                 </div>
                 <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Cheerful Loving Couple Bakers Drinking Coffee</a></h2></div>
+                    <h2 class="entry-title title post_title"><a href="{{ article.get_absolute_url }}" rel="bookmark">{{article.title}}</a></h2></div>
                 <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Images Posts</a>, <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">people</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T23:42:46+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">5 Comments</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
+                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In 
+                
+                {% for category in article.categories.all %}
+                <a href="" rel="category tag">{{ category.title }}</a>;
+                {% endfor %}
+                
+                </span><span class="blog_meta_item blog_meta_tags">Tags 
+                
+                {% for tag in article.tags.all %}
+                <a href="" rel="tag">{{tag.title}}</a>; 
+                {% endfor %}
+
+                </span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
+                    <time class="entry-date published updated">{{article.timestamp|timesince}} ago</time>
+                    </span><span class="blog_meta_item blog_meta_comments"><a href="">{{article.comment_count}} Comments</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" style="width:25px; height:25px" alt="" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
                 </div>
                 <div class="entry-content blog_post_text blog_post_description">
                     <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
+                    <p>{{article.overview}}<a href="{{ article.get_absolute_url }}" class="more_link more_link_dots"> … </a></p>
                 </div>
                 <!-- end entry-content div -->
                 <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
+                    <div class="blog_post_control_item blog_post_readmore"> <a href="{{ article.get_absolute_url }}" class="read_more_link">Continue Reading</a></div>
                     <!-- end .blog_post_readmore -->
                 </div>
                 <!-- end blog_post_control -->
@@ -31,347 +63,55 @@
             <!-- end blog_post -->
         </article>
         <!-- end #post-## blog_post_container-->
-        <article id="post-64" class="blog_post_container post-64 post type-post status-publish format-image has-post-thumbnail hentry category-life-style tag-design post_format-post-format-image" style="position: absolute; left: 306px; top: 0px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Loft Office With Vintage Decor For Creative Working"><img width="293" height="199" src="" class="img-responsive  wp-post-image lazyloaded" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Loft Office With Vintage Decor For Creative Working</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">design</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T15:07:47+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
+        
         <!-- end #post-## blog_post_container-->
-        <article id="post-60" class="blog_post_container post-60 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-image post_format-post-format-image" style="position: absolute; left: 613px; top: 0px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Cosy Bright Office In Yellow And Grey Colors"><img width="293" height="199" src="" class="img-responsive  wp-post-image lazyloaded" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Cosy Bright Office In Yellow And Grey Colors</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a>, <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">image</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T14:47:11+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-57" class="blog_post_container post-57 post type-post status-publish format-gallery has-post-thumbnail hentry category-life-style tag-people post_format-post-format-gallery" style="position: absolute; left: 306px; top: 498px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_gallery">
-                    <div class="filterable_wrapper">
-                        <div id="gallery-1" class="clearfix gallery galleryid-57 asalah_row gallery_row gallery-columns-3 gallery-size-thumbnail asalah_post_gallery asalah_post_gallery_format ">
-                            <ul class="grid_slider slides slick-initialized slick-slider">
-                                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="display: block;">Previous</button>
-                                <div class="slick-list draggable" style="height: 121px;">
-                                    <div class="slick-track" style="opacity: 1; width: 1485px; transform: translate3d(-297px, 0px, 0px);">
-                                        <li class="grid_slide item slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 297px;" tabindex="-1">
-                                            <figure class="gallery_column filterable_item full_column">
-                                                <div class="gallery-icon landscape">
-                                                    <a href="" tabindex="-1"><img width="880" height="400" src="" class="img-responsive lazyloaded" alt="traveler-in-ice-cave-PT98G9X" style="min-height: 121.364px; height: 121.364px;"></a>
-                                                </div>
-                                            </figure>
-                                        </li>
-                                        <li class="grid_slide item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 297px;" tabindex="0">
-                                            <figure class="gallery_column filterable_item full_column">
-                                                <div class="gallery-icon landscape">
-                                                    <a href="" tabindex="0"><img width="880" height="400" src="" class="img-responsive lazyloaded" alt="glacier-ice-cave-of-iceland-PWYAVUU" style="min-height: 121.364px; height: 121.364px;"></a>
-                                                </div>
-                                            </figure>
-                                        </li>
-                                        <li class="grid_slide item slick-slide" data-slick-index="1" aria-hidden="true" style="width: 297px;" tabindex="-1">
-                                            <figure class="gallery_column filterable_item full_column">
-                                                <div class="gallery-icon landscape">
-                                                    <a href="" tabindex="-1"><img width="880" height="400" src="" class="img-responsive lazyloaded" alt="traveler-in-ice-cave-PT98G9X" style="min-height: 121.364px; height: 121.364px;"></a>
-                                                </div>
-                                            </figure>
-                                        </li>
-                                        <li class="grid_slide item slick-slide slick-cloned" data-slick-index="2" aria-hidden="true" style="width: 297px;" tabindex="-1">
-                                            <figure class="gallery_column filterable_item full_column">
-                                                <div class="gallery-icon landscape">
-                                                    <a href="" tabindex="-1"><img width="880" height="400" src="" class="img-responsive lazyloaded" alt="glacier-ice-cave-of-iceland-PWYAVUU" style="min-height: 121.364px; height: 121.364px;"></a>
-                                                </div>
-                                            </figure>
-                                        </li>
-                                        <li class="grid_slide item slick-slide slick-cloned" data-slick-index="3" aria-hidden="true" style="width: 297px;" tabindex="-1">
-                                            <figure class="gallery_column filterable_item full_column">
-                                                <div class="gallery-icon landscape">
-                                                    <a href="" tabindex="-1"><img width="880" height="400" src="" class="img-responsive lazyloaded" alt="traveler-in-ice-cave-PT98G9X" style="min-height: 121.364px; height: 121.364px;"></a>
-                                                </div>
-                                            </figure>
-                                        </li>
-                                    </div>
-                                </div>
-                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style="display: block;">Next</button>
-                            </ul>
-                            <div class="asalah_post_gallery_nav_container clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Traveller Visiting Ice Cave With Amazing Eye-catching Scenes</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-photo"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">people</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T14:42:49+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-81" class="blog_post_container post-81 post type-post status-publish format-image has-post-thumbnail hentry category-life-style tag-girl tag-work post_format-post-format-image" style="position: absolute; left: 0px; top: 524px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Stylish Kitchen And Dining Room With Functional Ideas"><img width="293" height="199" src="" class="img-responsive  wp-post-image lazyloaded" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Stylish Kitchen And Dining Room With Functional Ideas</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">girl</a>, <a href="" rel="tag">work</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T14:41:52+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-54" class="blog_post_container post-54 post type-post status-publish format-video has-post-thumbnail hentry category-images-posts category-life-style tag-design post_format-post-format-video" style="position: absolute; left: 613px; top: 524px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_video">
-                    <div class="video_fit_container">
-                        <iframe class="video_frame lazyloaded" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src=""></iframe>
-                    </div>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">My Adventure in Alps, One of The Heighest Mountains!</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-video-camera"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Images Posts</a>, <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">design</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T14:33:29+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>Being creative within the constraints of client briefs, budgets and timelines is the norm for most agencies. However, investing in research and development as a true, creative outlet is a<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-51" class="blog_post_container post-51 post type-post status-publish format-audio has-post-thumbnail hentry category-life-style tag-city tag-people post_format-post-format-audio" style="position: absolute; left: 306px; top: 1019px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_audio">
-                    <iframe height="166" class=" lazyloaded" style="overflow:hidden;border:none;width:100%" src=""></iframe>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">How I Escape My Mind By Listening To Music</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-music"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">city</a>, <a href="" rel="tag">people</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T14:17:43+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-48" class="blog_post_container post-48 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-people tag-work post_format-post-format-image" style="position: absolute; left: 613px; top: 1047px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Beautiful Woman Smiling With Hands In Hair"><img width="293" height="199" src="" class="img-responsive  wp-post-image lazyloaded" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Beautiful Woman Smiling With Hands In Hair</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a>, <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">people</a>, <a href="" rel="tag">work</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T06:45:00+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-23" class="blog_post_container post-23 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-image tag-people post_format-post-format-image" style="position: absolute; left: 0px; top: 1048px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Modern Flat With Touch Of Creativity and Gray Patterned Walls"><img width="293" height="199" src="" class="img-responsive  wp-post-image lazyloaded" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Modern Flat With Touch Of Creativity and Gray Patterned Walls</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a>, <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">image</a>, <a href="" rel="tag">people</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T06:17:25+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">3 Comments</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-20" class="blog_post_container post-20 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-city post_format-post-format-image" style="position: absolute; left: 306px; top: 1537px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Nice Workplace For Brainstorming Meetings"><img width="293" height="199" src="" class="img-responsive lazyload  wp-post-image" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Nice Workplace For Brainstorming Meetings</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a>, <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">city</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T05:48:54+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-16" class="blog_post_container post-16 post type-post status-publish format-image has-post-thumbnail hentry category-uncategorized post_format-post-format-image" style="position: absolute; left: 613px; top: 1571px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Young Handsome Afro Black Man Going Upstairs"><img width="293" height="199" src="" class="img-responsive lazyload  wp-post-image" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Young Handsome Afro Black Man Going Upstairs</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Uncategorized</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T05:38:14+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-13" class="blog_post_container post-13 post type-post status-publish format-image has-post-thumbnail hentry category-photograph tag-city post_format-post-format-image" style="position: absolute; left: 0px; top: 1595px;">
-            <div class="blog_post clearfix">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="" title="Proud Father Playing With Cute Baby Son"><img width="293" height="199" src="" class="img-responsive lazyload  wp-post-image" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="" rel="bookmark">Proud Father Playing With Cute Baby Son</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">city</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="2015-05-17T05:36:08+00:00">May 17, 2015</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                </div>
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the<a href="" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                <!-- end blog_post_control -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-    </div>
+
+        {% endfor %}
+
+    </main>
     <!-- .blog_posts_wrapper -->
     <nav class="navigation pagination" role="navigation">
         <h2 class="screen-reader-text">Posts navigation</h2>
-        <div class="nav-links"><span aria-current="page" class="page-numbers current">1</span> <a class="page-numbers" href="">2</a> <a class="next page-numbers" href=""><i class="fa fa-angle-right"></i></a></div>
+        <div class="nav-links">
+        
+        {% if search_results.has_previous %}
+        <a class="next" href="?{{ page_request_variable }}=1"><i class="fa fa-angle-double-left"></i></a>
+        
+        <a class="next" href="?{{ page_request_variable }}={{ search_results.previous_page_number }}"><i class="fa fa-angle-left"></i></a>
+        
+        {% if search_results.number > 2 %}
+        <span>...</span>
+        {% endif %}
+
+        <a class="page-numbers" href="?{{ page_request_variable }}={{ search_results.previous_page_number }}">{{search_results.previous_page_number}}</a>
+        {% endif %} 
+
+        {% if search_results.has_next or search_results.has_previous %}
+        <span aria-current="page" class="page-numbers current">{{search_results.number}}</span> 
+        {% else %} 
+        <span aria-current="page" class="page-numbers current">1</span>
+        {% endif %} 
+        
+        {% if search_results.has_next %}
+        <a class="page-numbers" href="?{{ page_request_variable }}={{ search_results.next_page_number }}">{{search_results.next_page_number}}</a>
+
+        {% if search_results.paginator.num_pages > search_results.next_page_number %}
+        <span>...</span>
+        {% endif %}
+        
+        <a class="next" href="?{{ page_request_variable }}={{ search_results.next_page_number }}"><i class="fa fa-angle-right"></i></a>
+        
+        <a class="next" href="?{{ page_request_variable }}={{ search_results.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a>
+        
+        {% endif %} 
+        </div>
     </nav>
 </main>
+
+
+</div>
+</section>
+</div>
+</div>
 
 {% endblock content %}

@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <main class="main_content col-md-12">
     <!-- For Page Pagination -->
-    <div class="blog_posts_wrapper blog_posts_list clearfix  list_blog_style narrow_content_width">
-        <article id="post-74" class="blog_post_container post-74 post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-people post_format-post-format-image">
+    <div class="blog_posts_wrapper blog_posts_list clearfix  list_blog_style narrow_content_width" style="margin-top: 2em">
+
+        {% for article in article_list %}
+        
+        <article id="{{ article.title }}" class="blog_post_container post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-people post_format-post-format-image">
             <div class="blog_post clearfix">
                 <div class="posts_list_wrapper clearfix">
                     <div class="post_thumbnail_wrapper">
                         <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog  wp-post-image lazyloaded" alt="Cheerful Loving Couple Bakers Drinking Coffee"     > </a>
+                            <a class="post-thumbnail" href="{{ article.get_absolute_url }}" aria-hidden="true"> <img width="267" height="205" src="{{article.thumbnail.url}}" class="attachment-list_blog size-list_blog  wp-post-image lazyloaded" alt="{{article.title}}" /> </a>
                         </div>
                         <!-- end blog_post_banner-->
                     </div>
@@ -18,19 +23,32 @@
                     <div class="post_info_wrapper">
                         <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
                         <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Cheerful Loving Couple Bakers Drinking Coffee</a></h2></div>
+                            <h2 class="entry-title title post_title"><a href="{{ article.get_absolute_url }}" rel="bookmark">{{article.title}}</a></h2></div>
                         <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Images Posts</a>, <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">people</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T23:42:46+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">5 Comments</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
+                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In 
+                        
+
+                        {% for category in article.categories.all %}
+                        <a href="" rel="category tag">{{ category.title }}</a>;
+                        {% endfor %}
+                        
+                        </span><span class="blog_meta_item blog_meta_tags">Tags 
+                        
+                        {% for tag in article.tags.all %}
+                        <a href="" rel="tag">{{tag.title}}</a>; 
+                        {% endfor %}
+
+                        </span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
+                            <time class="entry-date published updated" >{{article.timestamp|timesince}} ago</time>
+                            </span><span class="blog_meta_item blog_meta_comments"><a href="">{{article.comment_count}} Comments</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="{{article.author.profile_picture.url}}" width="25" height="25" alt="{{article.author.name}}" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">{{article.author.name}}</a></span></span>
                         </div>
                         <div class="entry-content blog_post_text blog_post_description">
                             <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
+                            <p>{{article.overview}}<a href="{{ article.get_absolute_url }}" class="more_link more_link_dots"> … </a></p>
                         </div>
                         <!-- end entry-content div -->
                         <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
+                            <div class="blog_post_control_item blog_post_readmore"> <a href="{{ article.get_absolute_url }}" class="read_more_link">Continue Reading</a></div>
                             <!-- end .blog_post_readmore -->
                             <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
                             <!-- blog_post_control_item blog_post_share -->
@@ -43,441 +61,47 @@
             </div>
             <!-- end blog_post -->
         </article>
+        
+        {% endfor %}
         <!-- end #post-## blog_post_container-->
-        <article id="post-64" class="blog_post_container post-64 post type-post status-publish format-image has-post-thumbnail hentry category-life-style tag-design post_format-post-format-image">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog  wp-post-image lazyloaded" alt="Loft Office With Vintage Decor For Creative Working"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Loft Office With Vintage Decor For Creative Working</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">design</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T15:07:47+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-60" class="blog_post_container post-60 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-image post_format-post-format-image">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog  wp-post-image lazyloaded" alt="Cosy Bright Office In Yellow And Grey Colors"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Cosy Bright Office In Yellow And Grey Colors</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a>, <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">image</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T14:47:11+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-57" class="blog_post_container post-57 post type-post status-publish format-gallery has-post-thumbnail hentry category-life-style tag-people post_format-post-format-gallery">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog  wp-post-image lazyloaded" alt="Traveller Visiting Ice Cave With Amazing Eye-catching Scenes"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Traveller Visiting Ice Cave With Amazing Eye-catching Scenes</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-photo"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">people</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T14:42:49+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-81" class="blog_post_container post-81 post type-post status-publish format-image has-post-thumbnail hentry category-life-style tag-girl tag-work post_format-post-format-image">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog  wp-post-image lazyloaded" alt="Stylish Kitchen And Dining Room With Functional Ideas"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Stylish Kitchen And Dining Room With Functional Ideas</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">girl</a>, <a href="" rel="tag">work</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T14:41:52+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-54" class="blog_post_container post-54 post type-post status-publish format-video has-post-thumbnail hentry category-images-posts category-life-style tag-design post_format-post-format-video">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog lazyload  wp-post-image" alt="My Adventure in Alps, One of The Heighest Mountains!"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">My Adventure in Alps, One of The Heighest Mountains!</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-video-camera"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Images Posts</a>, <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">design</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T14:33:29+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>Being creative within the constraints of client briefs, budgets and timelines is the norm for most agencies. However, investing in research and development as a true, creative outlet is a powerful addition. In these side projects<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-51" class="blog_post_container post-51 post type-post status-publish format-audio has-post-thumbnail hentry category-life-style tag-city tag-people post_format-post-format-audio">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog lazyload  wp-post-image" alt="How I Escape My Mind By Listening To Music"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">How I Escape My Mind By Listening To Music</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-music"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">city</a>, <a href="" rel="tag">people</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T14:17:43+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at how to make<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-48" class="blog_post_container post-48 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-people tag-work post_format-post-format-image">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog lazyload  wp-post-image" alt="Beautiful Woman Smiling With Hands In Hair"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Beautiful Woman Smiling With Hands In Hair</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a>, <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">people</a>, <a href="" rel="tag">work</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T06:45:00+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-23" class="blog_post_container post-23 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-image tag-people post_format-post-format-image">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog lazyload  wp-post-image" alt="Modern Flat With Touch Of Creativity and Gray Patterned Walls"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Modern Flat With Touch Of Creativity and Gray Patterned Walls</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a>, <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">image</a>, <a href="" rel="tag">people</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T06:17:25+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">3 Comments</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-20" class="blog_post_container post-20 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-city post_format-post-format-image">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog lazyload  wp-post-image" alt="Nice Workplace For Brainstorming Meetings"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Nice Workplace For Brainstorming Meetings</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Life Style</a>, <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">city</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T05:48:54+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-16" class="blog_post_container post-16 post type-post status-publish format-image has-post-thumbnail hentry category-uncategorized post_format-post-format-image">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog lazyload  wp-post-image" alt="Young Handsome Afro Black Man Going Upstairs"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Young Handsome Afro Black Man Going Upstairs</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Uncategorized</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T05:38:14+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        <article id="post-13" class="blog_post_container post-13 post type-post status-publish format-image has-post-thumbnail hentry category-photograph tag-city post_format-post-format-image">
-            <div class="blog_post clearfix">
-                <div class="posts_list_wrapper clearfix">
-                    <div class="post_thumbnail_wrapper">
-                        <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="" aria-hidden="true"> <img width="267" height="205" src="" class="attachment-list_blog size-list_blog lazyload  wp-post-image" alt="Proud Father Playing With Cute Baby Son"     > </a>
-                        </div>
-                        <!-- end blog_post_banner-->
-                    </div>
-                    <!-- end post_thumbnail_wrapper -->
-                    <div class="post_info_wrapper">
-                        <!-- use this wrapper in list style only to group all info far from thumbnail wrapper -->
-                        <div class="blog_post_title">
-                            <h2 class="entry-title title post_title"><a href="" rel="bookmark">Proud Father Playing With Cute Baby Son</a></h2></div>
-                        <!-- end blog_post_title -->
-                        <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In <a href="" rel="category tag">Photograph</a></span><span class="blog_meta_item blog_meta_tags">Tags <a href="" rel="tag">city</a></span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                            <time class="entry-date published updated" datetime="2015-05-17T05:36:08+00:00">May 17, 2015</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="">Leave a comment</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" width="25" height="25" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
-                        </div>
-                        <div class="entry-content blog_post_text blog_post_description">
-                            <!-- Start entry-content div -->
-                            <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving<a href="" class="more_link more_link_dots"> … </a></p>
-                        </div>
-                        <!-- end entry-content div -->
-                        <div class="blog_post_control clearfix">
-                            <div class="blog_post_control_item blog_post_readmore"> <a href="" class="read_more_link">Continue Reading</a></div>
-                            <!-- end .blog_post_readmore -->
-                            <div class="blog_post_control_item blog_post_share"> <span class="share_item share_sign"><i class="fa fa-share "></i></span><span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_facebook" ><i class="fa fa-facebook"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_twitter"><i class="fa fa-twitter"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href=""  class="share_item share_item_social share_googleplus"><i class="fa fa-google-plus"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" target="_blank" class="share_item share_item_social share_linkedin"><i class="fa fa-linkedin"></i></a></span> <span class="social_share_item_wrapper"><a rel="nofollow" href="" class="share_item share_item_social share_pinterest" target="_blank" ><i class="fa fa-pinterest"></i></a></span></div>
-                            <!-- blog_post_control_item blog_post_share -->
-                        </div>
-                        <!-- end blog_post_control -->
-                    </div>
-                    <!-- .post_info_wrapper close post_info_wrapper in cas of list style-->
-                </div>
-                <!-- .posts_list_wrapper -->
-            </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
+
     </div>
     <!-- .blog_posts_wrapper -->
     <nav class="navigation pagination" role="navigation">
         <h2 class="screen-reader-text">Posts navigation</h2>
-        <div class="nav-links"><span aria-current="page" class="page-numbers current">1</span> <a class="page-numbers" href="">2</a> <a class="next page-numbers" href=""><i class="fa fa-angle-right"></i></a></div>
+        <div class="nav-links">
+        
+        {% if article_list.has_previous %}
+        <a class="next" href="?{{ page_request_variable }}=1"><i class="fa fa-angle-double-left"></i></a>
+        
+        <a class="next" href="?{{ page_request_variable }}={{ article_list.previous_page_number }}"><i class="fa fa-angle-left"></i></a>
+
+        {% if article_list.number > 2 %}
+        <span>...</span>
+        {% endif %}
+        
+        <a class="page-numbers" href="?{{ page_request_variable }}={{ article_list.previous_page_number }}">{{article_list.previous_page_number}}</a>
+        {% endif %} 
+
+        {% if article_list.has_next or article_list.has_previous %}
+        <span aria-current="page" class="page-numbers current">{{article_list.number}}</span> 
+        {% else %} 
+        <span aria-current="page" class="page-numbers current">1</span> 
+        {% endif %}
+        
+        {% if article_list.has_next %}
+        <a class="page-numbers" href="?{{ page_request_variable }}={{ article_list.next_page_number }}">{{article_list.next_page_number}}</a>
+        
+        {% if article_list.paginator.num_pages > article_list.next_page_number %}
+        <span>...</span>
+        {% endif %}
+
+        <a class="next" href="?{{ page_request_variable }}={{ article_list.next_page_number }}"><i class="fa fa-angle-right"></i></a>
+        
+        <a class="next" href="?{{ page_request_variable }}={{ article_list.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a>
+
+        {% endif %} 
+        </div>
     </nav>
 </main>
 

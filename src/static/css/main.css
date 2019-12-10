@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+
 .wp-block-audio figcaption {
     margin-top: .5em;
     margin-bottom: 1em;
@@ -190,11 +192,11 @@
     flex-wrap: wrap
 }
 
-@media (min-width:782px) {
+/* @media (min-width:782px) {
     .wp-block-columns {
         flex-wrap: nowrap
     }
-}
+} */
 
 .wp-block-column {
     flex-grow: 1;
@@ -216,7 +218,7 @@
 }
 
 @media (min-width:782px) {
-    .wp-block-column:not(: first-child) {
+    .wp-block-column:not(first-child) {
         margin-left: 32px
     }
 }
@@ -5073,7 +5075,6 @@ tbody.collapse.in {
     text-decoration: none;
     background-color: transparent;
     background-image: none;
-    filter: progid: DXImageTransform.Microsoft.gradient(enabled=false);
     cursor: not-allowed
 }
 
@@ -7827,6 +7828,10 @@ button.close {
 .pager:after,
 .panel-body:after {
     clear: both
+}
+
+.clearfix {
+    margin: 0 auto;
 }
 
 .center-block {
@@ -12352,11 +12357,14 @@ input[type="text"] {
     border-radius: 10px;
     z-index: 1;
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+
 }
 
 .blog_post_banner.blog_post_image img {
-    border-radius: 10px
+    border-radius: 10px;
+    
+    margin: 0 auto
 }
 
 .blog_post_banner.blog_post_video {
@@ -12843,6 +12851,10 @@ input[type="text"] {
     line-height: 24px
 }
 
+.blog_post {
+    min-width: 250px
+}
+
 .blog_posts_wrapper.list_blog_style .posts_list_wrapper,
 .blog_posts_wrapper.banner_list_blog_style .blog_style_featured_other .posts_list_wrapper {
     margin-left: -15px;
@@ -13002,6 +13014,11 @@ input[type="text"] {
 
 .pagination .current .screen-reader-text {
     position: static!important
+}
+
+.navigation.pagination .nav-links {
+    text-align: center;
+    margin-bottom: 50px
 }
 
 .navigation.pagination .nav-links .page-numbers {
@@ -15745,7 +15762,7 @@ span[data-pin-log="embed_pin_large"],
     0% {
         -webkit-filter: blur(10px)
     }
-    50%;
+    50%
     {
         -webkit-filter: blur(5px)
     }
@@ -15758,7 +15775,7 @@ span[data-pin-log="embed_pin_large"],
     0% {
         opacity: 0
     }
-    50%;
+    50%
     {
         opacity: .5
     }
