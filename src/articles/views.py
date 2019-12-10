@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Article
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+# from django.core.exceptions import DoesNotExist
+
 from django.db.models import Q
+
+from .forms import CommentForm
 
 
 def search(request):
@@ -44,7 +48,37 @@ def index(request):
 
 
 def article(request, id):
-    return render(request, 'article.html', {})
+    article = get_object_or_404(Article, id=id)
+
+    # Try to get the next & previous articles, based on id (possible since our id's are all consecutive integers —> would break if we deleted even one article!!)
+    try:
+        next_article = Article.objects.get(id=(str(int(id) + 1)))
+    except Article.DoesNotExist:
+        next_article = None
+
+    try:
+        previous_article = Article.objects.get(id=(str(int(id) - 1)))
+    except Article.DoesNotExist:
+        previous_article = None
+
+    # Comment form
+    form = CommentForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.article = article
+            form.save()
+            return redirect(reverse("article-detail", kwargs={
+                'id': article.id,
+            }))
+
+    context = {
+        'article': article,
+        'next_article': next_article,
+        'previous_article': previous_article,
+        'comment_form': form
+    }
+    return render(request, 'article.html', context)
 
 
 def about(request):

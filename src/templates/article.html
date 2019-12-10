@@ -21,7 +21,7 @@
               <div class="blog_post_banner blog_post_image">
                 <img
                   style="width:880px; height:400px"
-                  src="{% static 'images/cheerful-loving-couple.jpg' %}"
+                  src="{{ article.thumbnail.url }}"
                   class="img-responsive lazyload  wp-post-image"
                   alt="blog post thumbnail"
                 />
@@ -29,7 +29,7 @@
 
               <div class="blog_post_title">
                 <h1 class="entry-title title post_title">
-                  Cheerful Loving Couple Bakers Drinking Coffee
+                  {{ article.title }}
                 </h1>
               </div>
 
@@ -39,27 +39,38 @@
                 <span class="blog_meta_item blog_meta_format entry_format">
                   <a href=""><i class="fa fa-camera-retro"></i></a></span
                 ><span class="blog_meta_item blog_meta_category"
-                  >In <a href="" rel="category tag">Images Posts</a>,
-                  <a href="" rel="category tag">Life Style</a></span
+                  >In 
+                  
+                  {% for category in article.categories.all %}
+                  <a href="" rel="category tag">{{ category.title }}</a>;
+                  {% endfor %}
+                  
+                  </span
                 ><span class="blog_meta_item blog_meta_tags"
-                  >Tags <a href="" rel="tag">people</a></span
+                  >Tags 
+                  
+                  {% for tag in article.tags.all %}
+                  <a href="" rel="tag">{{ tag.title }}</a>; 
+                  {% endfor %}
+                  
+                  </span
                 ><span class="blog_meta_item blog_meta_date"
                   ><span class="screen-reader-text"></span>
                   <time
                     class="entry-date published updated"
-                    datetime="2015-05-17T23:42:46+00:00"
-                    >May 17, 2015</time
+                    datetime="{{ article.timestamp|date:"Y-m-d H:i" }}">
+                    {{ article.timestamp|date:"j F, Y" }}</time
                   > </span
                 ><span class="blog_meta_item blog_meta_author"
                   ><span class="author vcard">
                     <a class="meta_author_avatar_url" href="">
                       <img
-                        src="{% static 'images/Author.jpg' %}"
+                        src="{{ article.author.profile_picture.url }}"
                         style="width:25px; height:25px"
-                        alt="John Doe"
+                        alt="{{ article.author.name }}"
                         class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"
                     /></a>
-                    <a class="url fn n" href="">John Doe</a></span
+                    <a class="url fn n" href="">{{ article.author.name }}</a></span
                   ></span
                 >
               </div>
@@ -67,85 +78,7 @@
               <!-- Start entry-content div -->
 
               <div class="entry-content blog_post_text blog_post_description">
-                <p>
-                  <strong>It’s no secret</strong> that the digital industry is
-                  booming. From exciting startups to global brands, companies
-                  are reaching out to digital agencies, responding to the new
-                  possibilities available. However, the industry is fast
-                  becoming overcrowded, heaving with agencies offering similar
-                  services — on the surface, at least.
-                </p>
-                <p>
-                  Producing creative, fresh projects is the key to standing out.
-                  Unique side projects are the best place to innovate, but
-                  balancing commercially and creatively lucrative work is
-                  tricky. So, this article looks at how to make side projects
-                  work and why they’re worthwhile, drawing on lessons learned
-                  from our development of the ux companion app.
-                </p>
-                <h4>Why Integrate Side Projects?</h4>
-                <p>
-                  Being creative within the constraints of client briefs,
-                  budgets and timelines is the norm for most agencies. However,
-                  investing in research and development as a true, creative
-                  outlet is a powerful addition. In these side projects alone,
-                  your team members can pool their expertise to create and shape
-                  their own vision — a powerful way to develop motivation,
-                  interdisciplinary skills and close relationships.
-                </p>
-
-                <blockquote>
-                  <p>
-                    People think focus means saying yes to the thing
-                    you&#8217;ve got to focus on. But that&#8217;s not what it
-                    means at all.
-                  </p>
-                </blockquote>
-
-                <p>
-                  Building into the identity and culture of an agency can also
-                  lead to new client work. These projects act as a road map,
-                  showing clients exciting new technologies and ideas that will
-                  differentiate you from competitors. One of our earliest
-                  projects turned our website into a brochure, optimized for the
-                  first iPad’s touch interactions. By demonstrating the final
-                  product, we went on to win a project to create a similar
-                  product for a new client.
-                </p>
-                <h4>How To Make Side Projects Work</h4>
-                <p>
-                  <img
-                    class=" wp-image-159 size-full alignright lazyload "
-                    src="{% static 'images/sketch.jpg' %}"
-                    alt="sketch"
-                    style="width:390px; height:297px"
-                  />
-                  We’re still working on achieving that perfect balance between
-                  commerce and creativity. But we have fresh inspiration on how
-                  it’s done from having worked on ux companion. The app gained a
-                  popular following in early October, as one of the first native
-                  apps to offer a full glossary of user experience terms and
-                  theory — but the development process was definitely a learning
-                  process.
-                </p>
-                <p>
-                  Commercializing side projects alongside client work isn’t
-                  easy. Even if such projects are intended to generate
-                  additional revenue streams, they are not directly related to
-                  your core business. Those with a more qualitative aim, such as
-                  promoting expertise or technological experimentation, are even
-                  harder to justify.
-                </p>
-                <p>
-                  A significant shift in mindset is required to support either
-                  type of side project — weighing the longer-term, incremental
-                  benefits against committing what would otherwise be
-                  immediately billable time. Many agencies do this with a
-                  time-bound model of 80% client time versus 20% time, inspired
-                  by Google’s successes with Gmail and Google Reader  which they
-                  have since (tellingly) phased out. I’d instead recommend the
-                  following guidelines.
-                </p>
+                {{ article.content|safe }}
               </div>
 
               <!-- end entry-content div -->
@@ -212,7 +145,7 @@
             <div class="author-avatar">
               <a class="author-link" href="" rel="author">
                 <img
-                  src="{% static 'images/Author.jpg' %}"
+                  src="{{ article.author.profile_picture.url }}"
                   style="width:60px; height:60px"
                   alt="John Doe"
                   class="avatar avatar-80 wp-user-avatar wp-user-avatar-80 alignnone photo"
@@ -224,13 +157,10 @@
 
             <div class="author-description author_text">
               <h3 class="author-title">
-                <a class="author-link" href="" rel="author"> John Doe </a>
+                <a class="author-link" href="" rel="author"> {{ article.author.name }} </a>
               </h3>
               <p class="author-bio">
-                The names "John Doe" is used as placeholder names for a party
-                whose true identity is unknown or must be withheld in a legal
-                action, case, or discussion. The names are also used to refer to
-                a corpse.
+                {{ article.author.bio }}
               </p>
 
               <!-- .author-bio -->
@@ -241,56 +171,39 @@
 
           <!-- .author-info -->
 
-          <section class="post_navigation">
-            <div class="row">
-              <h3 class="screen-reader-text">Post Navigation</h3>
+          <section class='post_navigation'>
+              <div class='row'>
+                  <h3 class="screen-reader-text">Post Navigation</h3>
 
-              <div
-                class="post_navigation_item post_navigation_prev has_post_thumbnail  col-md-6"
-              >
-                <a
-                  class="post_navigation_arrow"
-                  href=""
-                  title="Loft Office With Vintage Decor For Creative Working"
-                  rel="prev"
-                >
-                  <i class="fa fa-angle-double-left"></i>
-                </a>
+                  {% if previous_article != None %}
+                  <div class="post_navigation_item post_navigation_prev has_post_thumbnail  col-md-6">
+                      <a class="post_navigation_arrow" href="{{ previous_article.get_absolute_url }}" title="{{previous_article.title}}" rel="prev"> <i class="fa fa-angle-double-left"></i> </a>
+                      <div class="post_thumbnail_wrapper">
+                          <a href="{{ previous_article.get_absolute_url }}" title="{{previous_article.title}}" rel="prev"> <img style="width:60px; height:60px" src="{{previous_article.thumbnail.url}}" class="img-responsive lazyload  wp-post-image" alt="" /> </a>
+                      </div>
+                      <div class="post_info_wrapper">
+                          <a href="{{ previous_article.get_absolute_url }}" title="{{previous_article.title}}" rel="prev"> <span class="post_navigation_title title">Previous Article:</span> </a>
+                          <h4 class="title post_title"><a href="{{ previous_article.get_absolute_url }}">{{previous_article.title}}</a></h4>
+                          <p></p>
+                      </div>
+                  </div>
+                  {% endif %}
 
-                <div class="post_thumbnail_wrapper">
-                  <a
-                    href=""
-                    title="Loft Office With Vintage Decor For Creative Working"
-                    rel="prev"
-                  >
-                    <img
-                      style="width:60px; height:60px"
-                      src="{% static 'images/blue sofa.jpg' %}"
-                      class="img-responsive lazyload  wp-post-image"
-                      alt=""
-                    />
-                  </a>
-                </div>
+                  {% if next_article != None %}
+                  <div class="post_navigation_item post_navigation_next has_post_thumbnail pull-right col-md-6">
+                      <a class="post_navigation_arrow" href="{{ next_article.get_absolute_url }}" title="{{next_article.title}}" rel="next"> <i class="fa fa-angle-double-right"></i> </a>
+                      <div class="post_thumbnail_wrapper">
+                          <a href="{{ next_article.get_absolute_url }}" title="{{next_article.title}}" rel="next"> <img style="width:60px; height:60px" src="{{next_article.thumbnail.url}}" class="img-responsive lazyload  wp-post-image" alt="" /> </a>
+                      </div>
+                      <div class="post_info_wrapper">
+                          <a href="{{ next_article.get_absolute_url }}" title="{{next_article.title}}" rel="next"> <span class="post_navigation_title title">Next Article:</span> </a>
+                          <h4 class="title post_title"><a href="{{ next_article.get_absolute_url }}">{{next_article.title}}</a></h4>
+                          <p></p>
+                      </div>
+                  </div>
+                  {% endif %}
 
-                <div class="post_info_wrapper">
-                  <a
-                    href=""
-                    title="Loft Office With Vintage Decor For Creative Working"
-                    rel="prev"
-                  >
-                    <span class="post_navigation_title title"
-                      >Previous Post:</span
-                    >
-                  </a>
-                  <h4 class="title post_title">
-                    <a href=""
-                      >Loft Office With Vintage Decor For Creative Working</a
-                    >
-                  </h4>
-                  <p></p>
-                </div>
               </div>
-            </div>
           </section>
 
           <div class="post_related">
@@ -466,6 +379,61 @@
               <!-- #post-## -->
             </div>
           </div>
+
+          <section id="comments" class="comments-area">
+              
+              <h3 class="comments-title title">
+                {{article.comments.count}} comment{% if article.comments.count == 1 %}{% else %}s{% endif %} <span class="screen-reader-text">On {{ article.title }}</span></h3>
+              <ul class="media-list comments_list col-md-12">
+                {% for comment in article.get_comments  %}
+                  <li class="comment byuser even thread-even depth-1 media the_comment" id="">
+                      <div class="pull-left commenter">
+                        <img src="
+                        {% if comment.user.author %}
+                        {{ article.author.profile_picture.url }}
+                        {% else %}
+                        https://secure.gravatar.com/avatar/4299cdf21cf5f42944524f3975327e44?s=256&d=mm&r=pg
+                        {% endif %}
+                        " style="width:50px; height:50px" alt="{{ comment.user.username }}" class="avatar avatar-50 wp-user-avatar wp-user-avatar-50 alignnone photo">
+                      </div>
+                      <!-- pull-left commenter -->
+                      <div class="media-body comment_body">
+                          <div class="comment_content_wrapper">
+                              <div class="media-heading clearfix"> <b class="commenter_name title">{{comment.user.first_name}} {{comment.user.last_name}}</b>
+                                  <div class="comment_info">
+                                      <a class="comment_time" href="">
+                                          <time datetime="">{{comment.timestamp|date:"j F, Y - P"}}</time>
+                                      </a> <a rel="nofollow" class="comment-reply-link" href="" aria-label="Reply to  ">- Reply</a></div>
+                                  <!-- comment_info -->
+                              </div>
+                              <!-- end media-heading -->
+                              <p>{{comment.content}}</p>
+                          </div>
+                      </div>
+                  </li>
+                {% endfor %}
+              </ul>
+
+              {% if request.user.is_authenticated %}
+              <div id="respond" class="comment-respond">
+                  <h3 id="reply-title" class="comment-reply-title">Leave a comment: <small><a rel="nofollow" id="cancel-comment-reply-link" href="" style="display:none;">Cancel Reply</a></small></h3>
+                  <form method="post" id="commentform" class="comment-form" action"." method="POST">
+                      {% csrf_token %}
+                      <p class="comment-notes">Your email address will not be published.</p>
+                      <div class="row">
+                          <div class="comment_textarea clearfix col-md-12">
+                              {{comment_form}}
+                          </div>
+                      </div>
+                      <p class="form-submit">
+                          <input name="submit" type="submit" id="submit" class="submit" />
+                      </p>
+                  </form>
+              </div>
+              {% endif %}
+              <!-- #respond -->
+          </section>
+                                
 
           <!-- .comments-area -->
         </div>

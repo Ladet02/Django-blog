@@ -12344,8 +12344,8 @@ input[type="text"] {
 }
 
 .blog_post_banner {
-    margin-top: 26px;
-    margin-bottom: 21px
+    margin-top: 2em;
+    margin-bottom: 5em
 }
 
 .blog_posts_wrapper.banners_blog_style .blog_post_banner,
@@ -13981,7 +13981,15 @@ h3.comment-reply-title>a {
     margin-top: 10px
 }
 
+.comment_textarea label {
+    display: none
+}
+
 .comments-area .comment-form input[type="text"] {
+    width: 100%
+}
+
+.comments-area .comment-form input[type="email"] {
     width: 100%
 }
 
@@ -16018,4 +16026,43 @@ span[data-pin-log="embed_pin_large"],
 .cookies_accept_links a:focus,
 .cookies_accept_links a:hover {
     text-decoration: underline
+}
+
+.blog_post_text {
+    text-align: justify
+}
+
+.blog_post_text table,
+.blog_post_text table td,
+.blog_post_text table tr,
+.blog_post_text table th
+ {
+     border: none;
+    /* border-color: white */
+}
+
+figcaption {
+    margin-top: 1em;
+    font-family: 'Lota';
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #0f52ba;
+
+    text-align: center;
+}
+
+/* Footnotes */
+
+.footnote {
+    font-size: 0.8em;
+}
+
+.footnote .ref-number {
+    margin-right: 2em;
+}
+.footnote a.ref-number:visited {
+    color: #f47e00
+}
+.footnote-number:visited {
+    color: #f47e00
 }
