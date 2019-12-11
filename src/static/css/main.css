@@ -14551,25 +14551,10 @@ div.wp-caption.alignright .wp-caption-text {
     margin-right: 0
 }
 
-.writing_mobile_icon {
-    display: block;
-    float: right;
-    position: relative;
-    height: 18px
-}
-
-.writing_mobile_icon span {
-    text-align: right;
-    display: block;
-    width: 16px;
-    height: 3px;
-    margin-top: 3px;
-    background: #666
-}
 
 .mobile_dropdown_arrow,
 .mobile_menu_button {
-    display: none
+    /* display: none */
 }
 
 @media screen and (min-width:769px) {
@@ -16065,4 +16050,144 @@ figcaption {
 }
 .footnote-number:visited {
     color: #f47e00
+}
+
+/* Mobile Hamburger */
+
+.hamburger-wrap {
+    float: right;
+    display: flex;
+    flex: none;
+    
+    width: 20px;
+    height: 100%;
+    
+    opacity: 1;
+    z-index: 2;
+    
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.writing_mobile_icon-checkbox {
+    display: block;
+    float: right;
+    position: absolute;
+    top: -2px;
+    right: -1px;
+    z-index: 2;
+
+    height: 100%;
+    width: 100%;
+    opacity: 0
+}
+
+.hamburger-lines {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+
+    display: flex;
+    
+    width: 100%;
+    height: 100%;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger-lines div {
+    position: relative;
+    display: flex;
+    flex: none;
+    
+    width: 100%;
+    height: 3px;
+    
+    align-content: center;
+    justify-content: center;
+    background: #666;
+
+    transition: all 0.4s ease;
+} 
+.hamburger-lines div:before,
+.hamburger-lines div:after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    height: 3px;
+    width: 100%;
+    background: #666;
+}
+.hamburger-lines div:after{
+    top: 5px;
+}
+
+.hamburger-wrap .writing_mobile_icon-checkbox:checked + .hamburger-lines > div {
+    transform: rotate(135deg);
+}
+.hamburger-wrap .writing_mobile_icon-checkbox:checked + .hamburger-lines > div:before,
+.hamburger-wrap .writing_mobile_icon-checkbox:checked + .hamburger-lines > div:after {
+    top: 0;
+    transform: rotate(90deg);
+}
+
+/* Hamburger menu clicked */
+@media (max-width: 769px){
+    .top_header_items_holder {
+        display: flex;
+        flex-direction: column;
+
+        position: fixed;
+        background-color: #ffffff;
+        width: 100vw; 
+
+        max-height:90vh;
+
+        text-align: center;
+        
+        top:-500px;
+        left: 0;
+
+        border: 0px gray;
+        border-bottom: gray 1px;
+        border-style: solid;
+        margin: 0 auto;
+        padding-bottom: 15px;
+    }
+    .header_search {
+        display: block;
+        width: 50%;
+        /* min-width: 250px; */
+
+        position: relative;
+        right: 25%;
+        /* left: 25% */
+        bottom: 15%;
+
+        border: 1px lightgray solid
+    }
+    .header_search > form {
+        /* width: 100%; */
+        min-width: 50vw;
+    }
+}
+
+
+/* .mobile_menu_text .hamburger-wrap .writing_mobile_icon-checkbox:checked + .top_header_items_holder {
+    position: fixed;    
+    top: 1000px
+    } */
+
+/* make hamburger stuff invisible if we have a wide screen  */
+@media (min-width: 769px){
+    .mobile_menu_button,
+    .hamburger-wrap,
+    .writing_mobile_icon-checkbox,
+    .hamburger-lines {
+        display:none
+    }
 }

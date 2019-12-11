@@ -6,14 +6,22 @@
       <div class="mobile_menu_button">
         <span class="mobile_menu_text">Menu</span>
 
-        <div class="writing_mobile_icon">
-          <span></span><span></span><span></span>
+        <div class="hamburger-wrap">
+        <input id="hamburgerToggle" type="checkbox" class="writing_mobile_icon-checkbox" 
+        onclick="hamburgerToggled()"
+        >
+        </input>
+        <div class="hamburger-lines">
+          <div></div>
+        </div>
         </div>
       </div>
 
       <!-- end mobile_menu_button -->
 
-      <div class="top_header_items_holder">
+      <script src="{% static 'scripts/hamburgerToggle.js' %}"></script>
+
+      <div id="header_menu" class="top_header_items_holder">
         <div class="main_menu pull-left">
           <div class="main_nav">
             <ul id="menu-main" class="nav navbar-nav">
@@ -49,7 +57,7 @@
                 id="menu-item-71"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
               >
-                <a href="/about">Subscribe</a>
+                <a href="/about">Log In</a>
               </li>
             </ul>
           </div>
