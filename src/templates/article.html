@@ -383,7 +383,7 @@
           <section id="comments" class="comments-area">
               
               <h3 class="comments-title title">
-                {{article.comments.count}} comment{% if article.comments.count == 1 %}{% else %}s{% endif %} <span class="screen-reader-text">On {{ article.title }}</span></h3>
+                {{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %} <span class="screen-reader-text">On {{ article.title }}</span></h3>
               <ul class="media-list comments_list col-md-12">
                 {% for comment in article.get_comments  %}
                   <li class="comment byuser even thread-even depth-1 media the_comment" id="">

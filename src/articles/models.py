@@ -42,7 +42,6 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     overview = models.TextField()
     timestamp = models.DateTimeField()
-    comment_count = models.IntegerField(default=0)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField()
     categories = models.ManyToManyField(Category)
