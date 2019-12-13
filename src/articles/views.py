@@ -13,13 +13,29 @@ from .forms import CommentForm
 def search(request):
     queryset = Article.objects.order_by('-timestamp')
 
+    # General search
     query = request.GET.get('q')
     if query:
         queryset = queryset.filter(
             Q(title__icontains=query) | Q(
-                overview__icontains=query)
+                overview__icontains=query) | Q(content__icontains=query) | Q(categories__title__icontains=query) | Q(tags__title__icontains=query)
         ).distinct()
 
+    # Category search
+    category_query = request.GET.get('category_q')
+    if category_query:
+        queryset = queryset.filter(
+            Q(categories__title__icontains=category_query)
+        ).distinct()
+
+    # Tag search
+    tag_query = request.GET.get('tag_q')
+    if tag_query:
+        queryset = queryset.filter(
+            Q(tags__title__icontains=tag_query)
+        ).distinct()
+
+    # Search results pagination
     paginator = Paginator(queryset, 10)
     page_request_variable = 'page'
     page_number = request.GET.get(page_request_variable)
@@ -50,14 +66,14 @@ def index(request):
 def article(request, id):
     article = get_object_or_404(Article, id=id)
 
-    # Try to get the next & previous articles, based on id (possible since our id's are all consecutive integers —> would break if we deleted even one article!!)
+    # Try to get the next & previous articles, using Django's incredible "get_next_by_FOO" function!!
     try:
-        next_article = Article.objects.get(id=(str(int(id) + 1)))
+        next_article = article.get_next_by_timestamp()
     except Article.DoesNotExist:
         next_article = None
 
     try:
-        previous_article = Article.objects.get(id=(str(int(id) - 1)))
+        previous_article = article.get_previous_by_timestamp()
     except Article.DoesNotExist:
         previous_article = None
 

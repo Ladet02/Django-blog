@@ -34,18 +34,18 @@
                                             <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href="{{ article.get_absolute_url }}"><i class="fa fa-camera-retro"></i></a></span><span class="blog_meta_item blog_meta_category">In 
                                             
                                             {% for category in article.categories.all %}
-                                            <a href="" rel="category tag">{{ category.title }}</a>;
+                                            <a href="/search/?category_q={{category.title}}" rel="category tag">{{ category.title }}</a>;
                                             {% endfor %}
                                             
                                             </span><span class="blog_meta_item blog_meta_tags">Tags 
                                             
                                             {% for tag in article.tags.all %}
-                                            <a href="" rel="tag">{{tag.title}}</a>; 
+                                            <a href="/search/?tag_q={{tag.title}}" rel="tag">{{tag.title}}</a>; 
                                             {% endfor %}
                                             
                                             </span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
                                                 <time class="entry-date published updated" datetime="{{ article.timestamp|date:"Y-m-d H:i" }}">{{article.timestamp|timesince}} ago</time>
-                                                </span><span class="blog_meta_item blog_meta_comments"><a href="">{{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %}</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="{{ article.author.profile_picture.url }}" style="width:25px; height:25px" alt="John Doe" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">{{ article.author.name}}</a></span></span>
+                                                </span><span class="blog_meta_item blog_meta_comments"><a href="{{article.get_absolute_url}}#comments">{{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %}</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url pic_25x25" href=""><img src="{{ article.author.profile_picture.url }}" alt="{{ article.author.name }}" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">{{ article.author.name}}</a></span></span>
                                             </div>
                                             <div class="entry-content blog_post_text blog_post_description">
                                                 <!-- Start entry-content div -->
@@ -72,17 +72,14 @@
                             <!-- end #post-## blog_post_container-->
                         </div>
                         <!-- .blog_posts_wrapper -->
-                        <nav class="navigation pagination" role="navigation">
-                            <h2 class="screen-reader-text">Posts navigation</h2>
-                            <div class="nav-links">
+                        <nav class="navigation pagination" role="navigation"
+                        style="display: flex; justify-content: center">
+                            <h2 class="screen-reader-text">Browse posts</h2>
                             
-                            <span aria-current="page" class="page-numbers current">1</span> 
-                            
-                            <a class="page-numbers" href="">2</a> 
-                            
-                            <a class="next page-numbers" href=""><i class="fa fa-angle-right"></i></a>
-
+                            <div class="blog_post_control_item view_all_posts_button ">
+                                <a href="browse" class="read_more_link">View all posts</a>
                             </div>
+
                         </nav>
                     </main>
                     <!-- .main_content -->

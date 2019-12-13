@@ -47,6 +47,8 @@ class Article(models.Model):
     categories = models.ManyToManyField(Category)
     tags = models.ManyToManyField(Tag)
 
+    import_code_highlighting_styles = models.BooleanField(default=False)
+
     content = HTMLField('')
 
     def __str__(self):
@@ -57,8 +59,27 @@ class Article(models.Model):
 
     @property
     def get_comments(self):
-        # .order_by('-timestamp') # Add that after '.all()' If you want the newest comments on top
+        # .order_by('-timestamp') # Add that after '.all()' if you want the newest comments on top
         return self.comments.all()
+
+    @property
+    def get_reading_time(self):
+        html_words_array = self.content.split(' ')
+
+        def remove_html_tags(text):
+            """Remove html tags from a string"""
+            import re
+            clean = re.compile(
+                r'<.*?>|src="(.|\n)*?"|alt="(.|\n)*?"|width="(.|\n)*?"|height="(.|\n)*?"|href="(.|\n)*?"|class="(.|\n)*?"|id="(.|\n)*?"|style="(.|\n)*?"')
+            return re.sub(clean, '', text)
+
+        words = [remove_html_tags(word)
+                 for word in html_words_array if 'jpg' not in word]
+
+        # assuming people read at 250 words per minute
+        words_per_minute = 175
+
+        return int(len(words) / words_per_minute)
 
 
 class Comment(models.Model):

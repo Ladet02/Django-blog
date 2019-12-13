@@ -149,7 +149,7 @@ TINYMCE_DEFAULT_CONFIG = {
             fullscreen preview bold italic underline | fontselect,
             fontsizeselect  | forecolor backcolor | alignleft alignright |
             aligncenter alignjustify | indent outdent | bullist numlist table |
-            | link image media | superscript subscript | visualblocks visualchars |
+            | link image media | superscript subscript blockquote | visualblocks visualchars |
             charmap hr pagebreak nonbreaking anchor | codesample code 
             ''',
     'image_caption': True,

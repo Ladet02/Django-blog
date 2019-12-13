@@ -29,13 +29,13 @@
                         
 
                         {% for category in article.categories.all %}
-                        <a href="" rel="category tag">{{ category.title }}</a>;
+                        <a href="/search/?category_q={{category.title}}" rel="category tag">{{ category.title }}</a>;
                         {% endfor %}
                         
                         </span><span class="blog_meta_item blog_meta_tags">Tags 
                         
                         {% for tag in article.tags.all %}
-                        <a href="" rel="tag">{{tag.title}}</a>; 
+                        <a href="/search/?tag_q={{tag.title}}" rel="tag">{{tag.title}}</a>; 
                         {% endfor %}
 
                         </span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>

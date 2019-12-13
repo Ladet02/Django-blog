@@ -4,6 +4,10 @@
 
 {% block content %}
 
+{% if article.import_code_highlighting_styles %}
+<link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">
+{% endif %}
+
 <section id="content" class="site_content">
   <div class="container">
     <div class="row">
@@ -37,12 +41,12 @@
 
               <div class="blog_post_meta clearfix">
                 <span class="blog_meta_item blog_meta_format entry_format">
-                  <a href=""><i class="fa fa-camera-retro"></i></a></span
+                  <a href=""><i class="fa fa-heart"></i></a></span
                 ><span class="blog_meta_item blog_meta_category"
                   >In 
                   
                   {% for category in article.categories.all %}
-                  <a href="" rel="category tag">{{ category.title }}</a>;
+                  <a href="/search/?category_q={{category.title}}" rel="category tag">{{ category.title }}</a>;
                   {% endfor %}
                   
                   </span
@@ -50,23 +54,24 @@
                   >Tags 
                   
                   {% for tag in article.tags.all %}
-                  <a href="" rel="tag">{{ tag.title }}</a>; 
+                  <a href="/search/?tag_q={{tag.title}}" rel="tag">{{ tag.title }}</a>; 
                   {% endfor %}
                   
                   </span
-                ><span class="blog_meta_item blog_meta_date"
-                  ><span class="screen-reader-text"></span>
+                ><span class="blog_meta_item blog_meta_date">
                   <time
                     class="entry-date published updated"
                     datetime="{{ article.timestamp|date:"Y-m-d H:i" }}">
                     {{ article.timestamp|date:"j F, Y" }}</time
                   > </span
+                ><span class="blog_meta_item ">
+                    {{article.get_reading_time}} minute read
+                   </span
                 ><span class="blog_meta_item blog_meta_author"
                   ><span class="author vcard">
-                    <a class="meta_author_avatar_url" href="">
+                    <a class="meta_author_avatar_url pic_25x25" href="">
                       <img
                         src="{{ article.author.profile_picture.url }}"
-                        style="width:25px; height:25px"
                         alt="{{ article.author.name }}"
                         class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"
                     /></a>
@@ -146,9 +151,8 @@
               <a class="author-link" href="" rel="author">
                 <img
                   src="{{ article.author.profile_picture.url }}"
-                  style="width:60px; height:60px"
                   alt="John Doe"
-                  class="avatar avatar-80 wp-user-avatar wp-user-avatar-80 alignnone photo"
+                  class="avatar avatar-80 wp-user-avatar wp-user-avatar-80 alignnone photo pic_60x60"
                 />
               </a>
             </div>
@@ -172,19 +176,19 @@
           <!-- .author-info -->
 
           <section class='post_navigation'>
-              <div class='row'>
+              <div class='row navigation_row'>
                   <h3 class="screen-reader-text">Post Navigation</h3>
 
                   {% if previous_article != None %}
                   <div class="post_navigation_item post_navigation_prev has_post_thumbnail  col-md-6">
                       <a class="post_navigation_arrow" href="{{ previous_article.get_absolute_url }}" title="{{previous_article.title}}" rel="prev"> <i class="fa fa-angle-double-left"></i> </a>
                       <div class="post_thumbnail_wrapper">
-                          <a href="{{ previous_article.get_absolute_url }}" title="{{previous_article.title}}" rel="prev"> <img style="width:60px; height:60px" src="{{previous_article.thumbnail.url}}" class="img-responsive lazyload  wp-post-image" alt="" /> </a>
+                          <a href="{{ previous_article.get_absolute_url }}" title="{{previous_article.title}}" rel="prev"> <img src="{{previous_article.thumbnail.url}}" class="img-responsive lazyload  wp-post-image pic_60x60" alt="" /> </a>
                       </div>
                       <div class="post_info_wrapper">
                           <a href="{{ previous_article.get_absolute_url }}" title="{{previous_article.title}}" rel="prev"> <span class="post_navigation_title title">Previous Article:</span> </a>
                           <h4 class="title post_title"><a href="{{ previous_article.get_absolute_url }}">{{previous_article.title}}</a></h4>
-                          <p></p>
+                          
                       </div>
                   </div>
                   {% endif %}
@@ -198,7 +202,7 @@
                       <div class="post_info_wrapper">
                           <a href="{{ next_article.get_absolute_url }}" title="{{next_article.title}}" rel="next"> <span class="post_navigation_title title">Next Article:</span> </a>
                           <h4 class="title post_title"><a href="{{ next_article.get_absolute_url }}">{{next_article.title}}</a></h4>
-                          <p></p>
+                          
                       </div>
                   </div>
                   {% endif %}
@@ -206,179 +210,7 @@
               </div>
           </section>
 
-          <div class="post_related">
-            <h3 class="related_title title">Related Posts:</h3>
-
-            <div class="row">
-              <div
-                id="post-20"
-                class="blog_post_container col-md-4 post-20 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-city post_format-post-format-image"
-              >
-                <div class="blog_post clearfix">
-                  <a title="Nice Workplace For Brainstorming Meetings" href="">
-                    <div class="blog_post_banner blog_post_image">
-                      <img
-                        style="width:293px; height:199px"
-                        src="{% static 'images/living room.jpg' %}"
-                        class="attachment-masonry_blog size-masonry_blog lazyload  wp-post-image"
-                        alt=""
-                      />
-                    </div>
-
-                    <!-- .post-thumbnail -->
-                  </a>
-
-                  <div class="blog_post_title">
-                    <h4 class="entry-title title post_title">
-                      <a
-                        title="Nice Workplace For Brainstorming Meetings"
-                        href=""
-                        >Nice Workplace For Brainstorming Meetings</a
-                      >
-                    </h4>
-                  </div>
-
-                  <div class="asalah_hidden_schemas" style="display:none;">
-                    <span class="blog_meta_item blog_meta_date"
-                      ><span class="screen-reader-text"></span>
-                      <time
-                        class="entry-date published updated"
-                        datetime="2015-05-17T05:48:54+00:00"
-                        >May 17, 2015</time
-                      > </span
-                    ><span class="blog_meta_item blog_meta_author"
-                      ><span class="author vcard">
-                        <a class="meta_author_avatar_url" href="">
-                          <img
-                            src="{% static 'images/Author.jpg' %}"
-                            style="width:25px; height:25px"
-                            alt="John Doe"
-                            class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"
-                        /></a>
-                        <a class="url fn n" href="">John Doe</a></span
-                      ></span
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <!-- #post-## -->
-
-              <div
-                id="post-54"
-                class="blog_post_container col-md-4 post-54 post type-post status-publish format-video has-post-thumbnail hentry category-images-posts category-life-style tag-design post_format-post-format-video"
-              >
-                <div class="blog_post clearfix">
-                  <a
-                    title="My Adventure in Alps, One of The Heighest Mountains!"
-                    href=""
-                  >
-                    <div class="blog_post_banner blog_post_image">
-                      <img
-                        style="width:293px; height:199px"
-                        src="{% static 'images/blue sofa.jpg' %}"
-                        class="attachment-masonry_blog size-masonry_blog lazyload  wp-post-image"
-                        alt=""
-                      />
-                    </div>
-
-                    <!-- .post-thumbnail -->
-                  </a>
-
-                  <div class="blog_post_title">
-                    <h4 class="entry-title title post_title">
-                      <a
-                        title="My Adventure in Alps, One of The Heighest Mountains!"
-                        href=""
-                        >My Adventure in Alps, One of The Heighest Mountains!</a
-                      >
-                    </h4>
-                  </div>
-
-                  <div class="asalah_hidden_schemas" style="display:none;">
-                    <span class="blog_meta_item blog_meta_date"
-                      ><span class="screen-reader-text"></span>
-                      <time
-                        class="entry-date published updated"
-                        datetime="2015-05-17T14:33:29+00:00"
-                        >May 17, 2015</time
-                      > </span
-                    ><span class="blog_meta_item blog_meta_author"
-                      ><span class="author vcard">
-                        <a class="meta_author_avatar_url" href="">
-                          <img
-                            src="{% static 'images/Author.jpg' %}"
-                            style="width:25px; height:25px"
-                            alt="John Doe"
-                            class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"
-                        /></a>
-                        <a class="url fn n" href="">John Doe</a></span
-                      ></span
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <!-- #post-## -->
-
-              <div
-                id="post-60"
-                class="blog_post_container col-md-4 post-60 post type-post status-publish format-image has-post-thumbnail hentry category-life-style category-photograph tag-image post_format-post-format-image"
-              >
-                <div class="blog_post clearfix">
-                  <a
-                    title="Cosy Bright Office In Yellow And Grey Colors"
-                    href=""
-                  >
-                    <div class="blog_post_banner blog_post_image">
-                      <img
-                        style="width:293px; height:199px"
-                        src="{% static 'images/living room.jpg' %}"
-                        class="attachment-masonry_blog size-masonry_blog lazyload  wp-post-image"
-                        alt=""
-                      />
-                    </div>
-
-                    <!-- .post-thumbnail -->
-                  </a>
-
-                  <div class="blog_post_title">
-                    <h4 class="entry-title title post_title">
-                      <a
-                        title="Cosy Bright Office In Yellow And Grey Colors"
-                        href=""
-                        >Cosy Bright Office In Yellow And Grey Colors</a
-                      >
-                    </h4>
-                  </div>
-
-                  <div class="asalah_hidden_schemas" style="display:none;">
-                    <span class="blog_meta_item blog_meta_date"
-                      ><span class="screen-reader-text"></span>
-                      <time
-                        class="entry-date published updated"
-                        datetime="2015-05-17T14:47:11+00:00"
-                        >May 17, 2015</time
-                      > </span
-                    ><span class="blog_meta_item blog_meta_author"
-                      ><span class="author vcard">
-                        <a class="meta_author_avatar_url" href="">
-                          <img
-                            src="{% static 'images/Author.jpg' %}"
-                            style="width:25px; height:25px"
-                            alt="John Doe"
-                            class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"
-                        /></a>
-                        <a class="url fn n" href="">John Doe</a></span
-                      ></span
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <!-- #post-## -->
-            </div>
-          </div>
+          
 
           <section id="comments" class="comments-area">
               
@@ -394,7 +226,7 @@
                         {% else %}
                         https://secure.gravatar.com/avatar/4299cdf21cf5f42944524f3975327e44?s=256&d=mm&r=pg
                         {% endif %}
-                        " style="width:50px; height:50px" alt="{{ comment.user.username }}" class="avatar avatar-50 wp-user-avatar wp-user-avatar-50 alignnone photo">
+                        " alt="{{ comment.user.username }}" class="avatar avatar-50 wp-user-avatar wp-user-avatar-50 alignnone photo pic_50x50">
                       </div>
                       <!-- pull-left commenter -->
                       <div class="media-body comment_body">
@@ -454,4 +286,11 @@
 
   <!-- .container -->
 </section>
+
+
+{% if article.import_code_highlighting_styles %}
+<!-- Prism JS -->
+<script src="{% static "tinymce/js/prism.js" %}"></script>
+{% endif %}
+
 {% endblock content %}

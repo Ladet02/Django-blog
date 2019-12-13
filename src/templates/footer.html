@@ -15,13 +15,13 @@
             class="widget_container widget_content widget about-widget clearfix"
           >
             <h4 class="widget_title title">
-              <span class="page_header_title">About Me</span>
+              <span class="page_header_title">About the blog</span>
             </h4>
 
             <div class="asalah_about_me">
               <div class="author_image_wrapper default rounded">
                 <img
-                  class="img-responsive lazyload "
+                  class="img-responsive lazyload author_footer_image"
                   src="{% static 'images/Author.jpg' %}"
                   alt="About Me"
                 />
@@ -29,9 +29,10 @@
 
               <div class="author_text_wrapper">
                 <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua.
+                  Hey there! This is a blog that I made for practice :) It might become a real blog, or it might not. 
+                </p>
+                <p>
+                If it becomes real, I'll probably write a lot about books, programming, lanugages, fitness, and the world.
                 </p>
               </div>
             </div>
@@ -200,7 +201,7 @@
       <div class="second_footer has_first_footer row">
         <div class="col-md-12">
           <div class="second_footer_content_wrapper footer_credits">
-            © 2015 Writing Designs, INC. All Rights Reserved.
+            © {% now "Y" %} Dexter Sibirtsev. Made with <img class="pic_height20" src="https://i.imgur.com/3woPIFn.png" alt="Django Python web framework"/>. All Rights Reserved.
           </div>
 
           <!-- end second_footer_content_wrapper -->

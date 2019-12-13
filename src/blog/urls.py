@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from articles.views import index, article, about, search, browse
+from accounts.views import register, login, dashboard, logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +29,13 @@ urlpatterns = [
     path('browse/', browse),
     path('search/', search, name="search"),
 
-    path('tinymce/', include('tinymce.urls'))
+    path('tinymce/', include('tinymce.urls')),
+
+
+    path('login', login, name='login'),
+    path('register', register, name='register'),
+    path('logout', logout, name='logout'),
+    path('dashboard', dashboard, name='dashboard')
 ]
 
 if settings.DEBUG:

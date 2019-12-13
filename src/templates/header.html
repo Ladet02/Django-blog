@@ -53,12 +53,22 @@
               >
                 <a href="/about">About Me</a>
               </li>
+
+              {% if request.user.is_authenticated %}
               <li
                 id="menu-item-71"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
               >
-                <a href="/about">Log In</a>
+                <a href="/dashboard">My account</a>
               </li>
+              {% else %}
+              <li
+                id="menu-item-71"
+                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
+              >
+                <a href="/login">Log In</a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -158,8 +168,8 @@
               rel="home"
             >
               <img
-                style="width:124px"
-                src="{% static 'images/logo.png' %}"
+                style="width:180px"
+                src="{% static "images/Dexter's blog logo.svg" %}"
                 class="site_logo img-responsive site_logo_image pull-left clearfix"
                 alt="Writing"
               />
