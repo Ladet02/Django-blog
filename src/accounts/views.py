@@ -72,8 +72,8 @@ def logout(request):
         # Logout User
         auth.logout(request)
         messages.success(request, 'You are now logged out')
-        return redirect('index')
-    return render(request, 'index.html')
+        return redirect('/')
+    return render(request, 'logout.html')
 
 
 def dashboard(request):

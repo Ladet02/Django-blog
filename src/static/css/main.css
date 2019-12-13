@@ -11875,10 +11875,13 @@ input[type="text"] {
 }
 
 .header_icons .social_icon {
-    padding-top: 16px;
+    /* padding-top: 16px; */
     display: inline-block;
     line-height: 21px;
-    padding-bottom: 12px
+    /* padding-bottom: 12px */
+
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .header_social_icons a {
@@ -11971,12 +11974,15 @@ input[type="text"] {
 
 .nav>li>a {
     font-size: 14px;
-    padding-top: 16px;
+    /* padding-top: 16px; */
     padding-right: 0;
-    padding-bottom: 13px;
+    /* padding-bottom: 13px; */
     padding-left: 10px;
     padding-right: 10px;
-    color: #555
+    color: #555;
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .main_nav,
@@ -14593,10 +14599,12 @@ div.wp-caption.alignright .wp-caption-text {
         margin-bottom: 13px
     }
     .top_header_items_holder .main_menu {
-        padding: 0 14px 0 17px;
+        /* padding: 0 14px 0 17px;
         padding-bottom: 0;
         padding-right: 14px;
-        padding-left: 17px
+        padding-left: 17px */
+        
+        padding: 10px 14px 0 17px;
     }
     .slick-prev:before,
     .slick-next:before {
@@ -14662,9 +14670,12 @@ div.wp-caption.alignright .wp-caption-text {
     }
     .social_icons_list.header_social_icons {
         float: none!important;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        text-align: center
+        /* margin-top: 20px; */
+        /* margin-bottom: 20px; */
+        text-align: center;
+
+        margin-bottom: 10px;
+        margin-top: 10px;
     }
     .header_icons .social_icon {
         font-size: 16px;
@@ -16248,6 +16259,18 @@ figcaption {
 .view_all_posts_button a:hover {
     background-color: #34cbff;
 }
+.view_all_posts_button a.orange_button {
+    border-color: #f47e00;
+}
+
+.view_all_posts_button a.orange_button:hover {
+    background-color: #f47e00;
+}
+
+.logout_page {
+    padding: 15px;
+    line-height: 2.5em;
+}
 
 
 /* Footnotes */
@@ -16267,3 +16290,23 @@ figcaption {
 .footnote-number:visited {
     color: #f47e00
 }
+
+/* Scroll bar */
+/* The progress container (grey background) */
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: #ccc;
+  }
+  
+  /* The progress bar (scroll indicator) */
+  .progress-bar {
+    height: 8px;
+    background: #4caf50;
+    width: 0%;
+  }
+
+  /* HTML smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }

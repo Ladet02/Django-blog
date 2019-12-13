@@ -5,6 +5,8 @@ from django.contrib.auth import get_user_model
 
 from tinymce.models import HTMLField
 
+from django.template.defaultfilters import slugify
+from datetime import datetime
 
 # Create your models here.
 
@@ -40,8 +42,10 @@ class Tag(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+
     overview = models.TextField()
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(default=datetime.now, blank=False)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField()
     categories = models.ManyToManyField(Category)
@@ -55,7 +59,7 @@ class Article(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("article-detail", kwargs={"id": self.id})
+        return reverse("article-detail", kwargs={'slug': self.slug})
 
     @property
     def get_comments(self):
@@ -90,6 +94,5 @@ class Comment(models.Model):
         Article, related_name='comments', on_delete=models.CASCADE)
 
     def __str__(self):
-        # The reason we have this crazy interpolated string is for the comments section of the admin page
         # Here we have a fancy way to get the first five words of a comment
-        return f'{self.user.username} ——— {self.article.title} ——— {(" ").join((self.content).split()[0:5])}...'
+        return f'{(" ").join((self.content).split()[0:5])}...'

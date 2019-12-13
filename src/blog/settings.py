@@ -147,10 +147,11 @@ TINYMCE_DEFAULT_CONFIG = {
             ''',
     'toolbar1': '''
             fullscreen preview bold italic underline | fontselect,
-            fontsizeselect  | forecolor backcolor | alignleft alignright |
-            aligncenter alignjustify | indent outdent | bullist numlist table |
-            | link image media | superscript subscript blockquote | visualblocks visualchars |
-            charmap hr pagebreak nonbreaking anchor | codesample code 
+            fontsizeselect  | styleselect | forecolor backcolor | alignleft alignright aligncenter alignjustify | indent outdent | bullist numlist table | superscript subscript blockquote | codesample |
+            ''',
+    'toolbar2': '''
+            link image media | visualblocks visualchars |
+            charmap hr pagebreak nonbreaking anchor | code | undo redo |
             ''',
     'image_caption': True,
     'contextmenu': 'formats | link image',

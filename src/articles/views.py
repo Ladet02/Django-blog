@@ -63,8 +63,8 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def article(request, id):
-    article = get_object_or_404(Article, id=id)
+def article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
 
     # Try to get the next & previous articles, using Django's incredible "get_next_by_FOO" function!!
     try:

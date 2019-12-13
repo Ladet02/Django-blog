@@ -24,7 +24,7 @@ from accounts.views import register, login, dashboard, logout
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    path('article/<id>/', article, name="article-detail"),
+    path('article/<slug>/', article, name="article-detail"),
     path('about/', about),
     path('browse/', browse),
     path('search/', search, name="search"),

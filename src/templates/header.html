@@ -51,7 +51,7 @@
                 id="menu-item-71"
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
               >
-                <a href="/about">About Me</a>
+                <a href="#about-the-blog">About Me</a>
               </li>
 
               {% if request.user.is_authenticated %}
@@ -60,6 +60,12 @@
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
               >
                 <a href="/dashboard">My account</a>
+              </li>
+              <li
+                id="menu-item-71"
+                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71 dropdown-submenu default_menu"
+              >
+                <a href="/logout">Log Out</a>
               </li>
               {% else %}
               <li
@@ -138,6 +144,16 @@
 
       <!-- end .top_header_items_holder -->
     </div>
+
+    <!-- Scroll bar -->
+    {% if 'article/' in request.path %}
+    <div class="progress-container">
+      <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <script src={% static 'scripts/scrollBar.js'%}></script>
+    {% endif %}
+    <!-- end Scroll bar -->
 
     <!-- end container -->
   </div>

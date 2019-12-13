@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="logout" class="site_content account_forms">
+    <div class="container">
+        <div class="row">
+            <div class="account_form">
+                <div class="logout_page">
+                    <div>
+                        <h1>
+                            <i class="fas fa-user-times"></i> Are you sure you want to log out?
+                        </h1>
+                        <p>Don't worry, you're always welcome to come back ;)</p>
+                    </div>
+                    <div>
+                        <div class="blog_post_control_item view_all_posts_button ">
+                            <a href="browse" class="read_more_link orange_button">
+                                Continue browsing
+                            </a>
+                            <a href="javascript:{document.getElementById('logout-button').submit()}" method="POST" class="read_more_link">
+                            Log Out
+                            </a>
+                            <form action="{% url 'logout' %}" method="POST" id="logout-button">
+                                {% csrf_token %}
+                                <input type="hidden">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

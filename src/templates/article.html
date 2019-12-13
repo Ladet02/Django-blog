@@ -18,8 +18,8 @@
           class="blog_posts_wrapper blog_single blog_posts_single narrow_content_width"
         >
           <div
-            id="post-74"
-            class="blog_post_container post-74 post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-people post_format-post-format-image"
+            id="post"
+            class="blog_post_container post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-people post_format-post-format-image"
           >
             <div class="blog_post clearfix">
               <div class="blog_post_banner blog_post_image">
@@ -64,7 +64,11 @@
                     datetime="{{ article.timestamp|date:"Y-m-d H:i" }}">
                     {{ article.timestamp|date:"j F, Y" }}</time
                   > </span
-                ><span class="blog_meta_item ">
+                >
+
+                <span class="blog_meta_item blog_meta_comments"><a href="#comments">{{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %}</a></span>
+
+                <span class="blog_meta_item ">
                     {{article.get_reading_time}} minute read
                    </span
                 ><span class="blog_meta_item blog_meta_author"
@@ -146,7 +150,7 @@
 
           <!-- end #post-## blog_post_container-->
 
-          <div class="author_box author-info has_avatar">
+          <div class="author_box author-info has_avatar" id="author-info">
             <div class="author-avatar">
               <a class="author-link" href="" rel="author">
                 <img
