@@ -201,7 +201,7 @@
                   <div class="post_navigation_item post_navigation_next has_post_thumbnail pull-right col-md-6">
                       <a class="post_navigation_arrow" href="{{ next_article.get_absolute_url }}" title="{{next_article.title}}" rel="next"> <i class="fa fa-angle-double-right"></i> </a>
                       <div class="post_thumbnail_wrapper">
-                          <a href="{{ next_article.get_absolute_url }}" title="{{next_article.title}}" rel="next"> <img style="width:60px; height:60px" src="{{next_article.thumbnail.url}}" class="img-responsive lazyload  wp-post-image" alt="" /> </a>
+                          <a href="{{ next_article.get_absolute_url }}" title="{{next_article.title}}" rel="next"> <img src="{{next_article.thumbnail.url}}" class="img-responsive lazyload  wp-post-image pic_60x60" alt="" /> </a>
                       </div>
                       <div class="post_info_wrapper">
                           <a href="{{ next_article.get_absolute_url }}" title="{{next_article.title}}" rel="next"> <span class="post_navigation_title title">Next Article:</span> </a>
@@ -220,7 +220,9 @@
               
               <h3 class="comments-title title">
                 {{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %} <span class="screen-reader-text">On {{ article.title }}</span></h3>
+
               <ul class="media-list comments_list col-md-12">
+              
                 {% for comment in article.get_comments  %}
                   <li class="comment byuser even thread-even depth-1 media the_comment" id="">
                       <div class="pull-left commenter">
@@ -248,6 +250,7 @@
                       </div>
                   </li>
                 {% endfor %}
+
               </ul>
 
               {% if request.user.is_authenticated %}

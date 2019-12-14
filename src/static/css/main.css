@@ -11751,7 +11751,7 @@ input[type="text"] {
 .top_menu_wrapper {
     -webkit-backface-visibility: hidden;
     position: relative;
-    border-bottom: 1px solid #eee
+    /* border-bottom: 1px solid #eee */
 }
 
 .top_header_items_holder .site_logo,
@@ -12255,7 +12255,7 @@ input[type="text"] {
         padding-bottom: 10px!important;
         padding-top: 10px!important;
         z-index: 9999;
-        border-bottom: 1px solid #eee
+        /* border-bottom: 1px solid #eee */
     }
     .admin-bar .sticky_logo {
         top: 81px
@@ -14719,7 +14719,7 @@ div.wp-caption.alignright .wp-caption-text {
         overflow-x: hidden
     }
     .sticky_header .top_menu_wrapper {
-        border-bottom: 1px solid #eee
+        /* border-bottom: 1px solid #eee */
     }
     .mobile_menu_button {
         border: 3px solid #f2f2f2;
@@ -16299,10 +16299,14 @@ figcaption {
     background: #ccc;
   }
   
+.sticky_header {
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
   /* The progress bar (scroll indicator) */
   .progress-bar {
     height: 8px;
-    background: #4caf50;
+    background: #00ade6;
     width: 0%;
   }
 

@@ -15,7 +15,7 @@
                 <div class="posts_list_wrapper clearfix">
                     <div class="post_thumbnail_wrapper">
                         <div class="blog_post_banner blog_post_image">
-                            <a class="post-thumbnail" href="{{ article.get_absolute_url }}" aria-hidden="true"> <img width="267" height="205" src="{{article.thumbnail.url}}" class="attachment-list_blog size-list_blog  wp-post-image lazyloaded" alt="{{article.title}}" /> </a>
+                            <a class="post-thumbnail" href="{{ article.get_absolute_url }}" aria-hidden="true"> <img src="{{article.thumbnail.url}}" class="attachment-list_blog size-list_blog  wp-post-image lazyloaded" alt="{{article.title}}" /> </a>
                         </div>
                         <!-- end blog_post_banner-->
                     </div>
@@ -40,7 +40,7 @@
 
                         </span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
                             <time class="entry-date published updated" datetime="{{ article.timestamp|date:"Y-m-d H:i" }}">{{article.timestamp|timesince}} ago</time>
-                            </span><span class="blog_meta_item blog_meta_comments"><a href="{{ article.get_absolute_url }}#comments">{{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %}</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="{{article.author.profile_picture.url}}" width="25" height="25" alt="{{article.author.name}}" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">{{article.author.name}}</a></span></span>
+                            </span><span class="blog_meta_item blog_meta_comments"><a href="{{ article.get_absolute_url }}#comments">{{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %}</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="{{article.author.profile_picture.url}}" alt="{{article.author.name}}" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo pic_25x25"></a> <a class="url fn n" href="">{{article.author.name}}</a></span></span>
                         </div>
                         <div class="entry-content blog_post_text blog_post_description">
                             <!-- Start entry-content div -->
