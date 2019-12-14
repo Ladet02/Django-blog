@@ -85,8 +85,8 @@ def article(request, slug):
             form.instance.article = article
             form.save()
             return redirect(reverse("article-detail", kwargs={
-                'id': article.id,
-            }))
+                'slug': article.slug,
+            }) + "#comments")
 
     context = {
         'article': article,

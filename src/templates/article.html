@@ -31,7 +31,7 @@
                 />
               </div>
 
-              <div class="blog_post_title">
+              <div class="blog_post_title" id="blog_post_title">
                 <h1 class="entry-title title post_title">
                   {{ article.title }}
                 </h1>
@@ -66,7 +66,7 @@
                   > </span
                 >
 
-                <span class="blog_meta_item blog_meta_comments"><a href="#comments">{{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %}</a></span>
+                <span class="blog_meta_item blog_meta_comments"><a href="#comments">{{article.comments.count}} Comment{{article.comments.count|pluralize}}</a></span>
 
                 <span class="blog_meta_item ">
                     {{article.get_reading_time}} minute read
@@ -245,7 +245,7 @@
                                   <!-- comment_info -->
                               </div>
                               <!-- end media-heading -->
-                              <p>{{comment.content}}</p>
+                              <p>{{comment.content|linebreaks}}</p>
                           </div>
                       </div>
                   </li>

@@ -16310,6 +16310,11 @@ figcaption {
     width: 0%;
   }
 
+/* Comments */
+.comment_body p {
+    text-align: justify
+}
+
   /* HTML smooth scroll */
   html {
     scroll-behavior: smooth;
