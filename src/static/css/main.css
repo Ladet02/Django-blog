@@ -16239,10 +16239,14 @@ figcaption {
 
 .blog_post_text figure {
     text-align: center;
+
+    border: none
 }
 
 .blog_post_text figcaption {
     text-align: center;
+    
+    border: none
 }
 
 /* Account forms */

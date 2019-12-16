@@ -219,7 +219,7 @@
           <section id="comments" class="comments-area">
               
               <h3 class="comments-title title">
-                {{article.comments.count}} Comment{% if article.comments.count != 1 %}s{% else %}{% endif %} <span class="screen-reader-text">On {{ article.title }}</span></h3>
+                {{article.comments.count}} Comment{{article.comments.count|pluralize}} <span class="screen-reader-text">On {{ article.title }}</span></h3>
 
               <ul class="media-list comments_list col-md-12">
               
