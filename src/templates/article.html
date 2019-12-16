@@ -99,7 +99,7 @@
                   ><span class="social_share_item_wrapper">
                     <a
                       rel="nofollow"
-                      href=""
+                      href="https://www.facebook.com/sharer/sharer.php?u={{ article.get_absolute_url }}"
                       class="share_item share_item_social share_facebook"
                       
                       ><i class="fa fa-facebook"></i></a
@@ -107,7 +107,7 @@
                   <span class="social_share_item_wrapper">
                     <a
                       rel="nofollow"
-                      href=""
+                      href="https://twitter.com/intent/tweet?text=Check%20out%20this%20%23cool%20article%20from%20%40DextersBlog%20{{ article.get_absolute_url }}"
                       target="_blank"
                       class="share_item share_item_social share_twitter"
                       ><i class="fa fa-twitter"></i></a
@@ -115,15 +115,7 @@
                   <span class="social_share_item_wrapper">
                     <a
                       rel="nofollow"
-                      href=""
-                      
-                      class="share_item share_item_social share_googleplus"
-                      ><i class="fa fa-google-plus"></i></a
-                  ></span>
-                  <span class="social_share_item_wrapper">
-                    <a
-                      rel="nofollow"
-                      href=""
+                      href="https://www.linkedin.com/shareArticle?mini=true&url={{ article.get_absolute_url }}&title={{ article.title }}"
                       target="_blank"
                       class="share_item share_item_social share_linkedin"
                       ><i class="fa fa-linkedin"></i></a
@@ -131,7 +123,7 @@
                   <span class="social_share_item_wrapper">
                     <a
                       rel="nofollow"
-                      href=""
+                      href="http://pinterest.com/pin/create/button/?url={{ article.get_absolute_url }}&description="
                       class="share_item share_item_social share_pinterest"
                       target="_blank"
                       data-pin-custom="true"

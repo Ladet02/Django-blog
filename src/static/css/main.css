@@ -8195,7 +8195,7 @@ button.close {
     content: '\f0d2'
 }
 
-.fa-google-plus:before {
+.fa-reddit:before {
     content: '\f0d5'
 }
 
@@ -12624,12 +12624,12 @@ input[type="text"] {
     background-color: #32aadc
 }
 
-.blog_post_control_item .share_item.share_googleplus {
+.blog_post_control_item .share_item.share_reddit {
     border-color: #e2131e
 }
 
-.blog_post_control_item .share_item.share_googleplus:focus,
-.blog_post_control_item .share_item.share_googleplus:hover {
+.blog_post_control_item .share_item.share_reddit:focus,
+.blog_post_control_item .share_item.share_reddit:hover {
     background-color: #e2131e
 }
 
