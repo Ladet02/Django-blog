@@ -3,7 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
 from django.db.models import Q
-from articles.models import Article
+from articles.models import Comment
 
 # Create your views here.
 
@@ -79,10 +79,10 @@ def logout(request):
 
 
 def dashboard(request):
-    users_favorites = Article.objects.filter(
-        Q(favorited_by__username__icontains=request.user.username)).order_by('-timestamp')
+    users_comments = Comment.objects.filter(
+        Q(user__username__icontains=request.user.username)).order_by('-timestamp')
 
     context = {
-        'favorites': users_favorites
+        'comments': users_comments
     }
     return render(request, 'dashboard.html', context)

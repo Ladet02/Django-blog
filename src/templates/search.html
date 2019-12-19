@@ -33,7 +33,11 @@
                 <div class="blog_post_title">
                     <h2 class="entry-title title post_title"><a href="{{ article.get_absolute_url }}" rel="bookmark">{{article.title}}</a></h2></div>
                 <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix"> <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-heart"></i></a></span><span class="blog_meta_item blog_meta_category">In 
+                <div class="blog_post_meta clearfix"> 
+                
+                {% comment %} <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-heart"></i></a></span> {% endcomment %}
+
+                <span class="blog_meta_item blog_meta_category">In 
                 
                 {% for category in article.categories.all %}
                 <a href="/search/?category_q={{category.title}}" rel="category tag">{{ category.title }}</a>;

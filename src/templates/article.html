@@ -40,7 +40,7 @@
               <!-- end blog_post_title -->
 
               <div class="blog_post_meta clearfix">
-              {% comment %} favorites {% endcomment %}
+              
                 {% comment %} <span class="blog_meta_item blog_meta_format entry_format">
                   <a href=""><i class="fa fa-heart"></i></a></span
                 > {% endcomment %}
@@ -234,9 +234,8 @@
                           <div class="comment_content_wrapper">
                               <div class="media-heading clearfix"> <b class="commenter_name title">{{comment.user.first_name}} {{comment.user.last_name}}</b>
                                   <div class="comment_info">
-                                      <a class="comment_time" href="">
                                           <time datetime="">{{comment.timestamp|date:"j F, Y - P"}}</time>
-                                      </a> <a rel="nofollow" class="comment-reply-link" href="" aria-label="Reply to  ">- Reply</a></div>
+                                      </div>
                                   <!-- comment_info -->
                               </div>
                               <!-- end media-heading -->

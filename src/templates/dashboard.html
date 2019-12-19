@@ -8,68 +8,40 @@
             <div class="dashboard">
                 <p>Hey {{request.user.first_name}}!</p>
                 <p>You are logged in.</p>
-                <h1>Favorite articles:</h1>
-            </div>
+                <h1>Your comments:</h1>
 
-            <div class="blog_posts_wrapper blog_posts_list clearfix  masonry_blog_style narrow_content_width wp-block-columns" >
+                {% comment %} User Comments {% endcomment %}
 
-            {% comment %} List of favorites {% endcomment %}
-            {% for article in favorites  %}
-            
-            <article id="" class="blog_post_container post type-post status-publish format-image has-post-thumbnail hentry category-images-posts category-life-style tag-people post_format-post-format-image" >
-            <div class="blog_post clearfix favorites">
-                <div class="blog_post_banner blog_post_image">
-                    <a href="{{ article.get_absolute_url }}" title="{{article.title}}"><img style="width:293px; height:199px" src="{{article.thumbnail.url}}" class="img-responsive  wp-post-image lazyloaded" alt=""></a>
-                </div>
-                <div class="blog_post_title">
-                    <h2 class="entry-title title post_title"><a href="{{ article.get_absolute_url }}" rel="bookmark">{{article.title}}</a></h2></div>
-                <!-- end blog_post_title -->
-                <div class="blog_post_meta clearfix favorites-info "> 
+                <ul class="media-list comments_list col-md-12">
                 
-                {% comment %} <span class="blog_meta_item blog_meta_format entry_format"><a href=""><i class="fa fa-heart"></i></a></span> {% endcomment %}
-                
-                <span class="blog_meta_item blog_meta_category">In 
-                
-                {% for category in article.categories.all %}
-                <a href="/search/?category_q={{category.title}}" rel="category tag">{{ category.title }}</a>;
+                {% for comment in comments %}
+                    <li class="comment byuser even thread-even depth-1 media the_comment" id="">
+                    <div class="pull-left commenter">
+                        <img src="
+                        https://secure.gravatar.com/avatar/4299cdf21cf5f42944524f3975327e44?s=256&d=mm&r=pg
+                        " alt="{{ comment.user.username }}" class="avatar avatar-50 wp-user-avatar wp-user-avatar-50 alignnone photo pic_50x50">
+                    </div>
+                    <!-- pull-left commenter -->
+                    <div class="media-body comment_body">
+                        <div class="comment_content_wrapper">
+                    <h3>In <a href="{{comment.article.get_absolute_url}}">{{comment.article.title}}</a>:</h3>
+                            <div class="media-heading clearfix"> <b class="commenter_name title">{{comment.user.first_name}} {{comment.user.last_name}}</b>
+                                <div class="comment_info">
+                                    <time datetime="">{{comment.timestamp|date:"j F, Y - P"}}</time>
+                                </div>
+                                <!-- comment_info -->
+                            </div>
+                            <!-- end media-heading -->
+                            <p>{{comment.content|linebreaks}}</p>
+                        </div>
+                    </div>
+                </li>
                 {% endfor %}
-                
-                </span><span class="blog_meta_item blog_meta_tags">Tags 
-                
-                {% for tag in article.tags.all %}
-                <a href="/search/?tag_q={{tag.title}}" rel="tag">{{tag.title}}</a>; 
-                {% endfor %}
-
-                </span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
-                    <time class="entry-date published updated" datetime="{{ article.timestamp|date:"Y-m-d H:i" }}">{{article.timestamp|timesince}} ago</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="{{ article.get_absolute_url}}#comments">{{article.comments.count}} Comment{{article.comments.count|pluralize}}</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="{{article.author.profile_picture.url}}" style="width:25px; height:25px" alt="" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">{{article.author.name}}</a></span></span>
-                </div>
-
-                {% comment %} 
-                <div class="entry-content blog_post_text blog_post_description">
-                    <!-- Start entry-content div -->
-                    <p>{{article.overview}}<a href="{{ article.get_absolute_url }}" class="more_link more_link_dots"> … </a></p>
-                </div>
-                <!-- end entry-content div -->
-                <div class="blog_post_control clearfix">
-                    <div class="blog_post_control_item blog_post_readmore"> <a href="{{ article.get_absolute_url }}" class="read_more_link">Continue Reading</a></div>
-                    <!-- end .blog_post_readmore -->
-                </div>
-                {% endcomment %}
+                </ul>
 
 
-
-                <!-- end blog_post_control -->
+                {% comment %} End user comments {% endcomment %}
             </div>
-            <!-- end blog_post -->
-        </article>
-        <!-- end #post-## blog_post_container-->
-        
-        <!-- end #post-## blog_post_container-->
-
-            {% endfor %}
-            {% comment %} End favorites {% endcomment %}
-        </div>
         </div>
     </div>
 </section>
