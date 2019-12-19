@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
+from django.db.models import Q
+from articles.models import Article
 
 # Create your views here.
 
@@ -77,10 +79,10 @@ def logout(request):
 
 
 def dashboard(request):
-    # favorites = Favorites.objects.order_by(
-    #     '-timestamp').filter(user_id=request.user.id)
+    users_favorites = Article.objects.filter(
+        Q(favorited_by__username__icontains=request.user.username)).order_by('-timestamp')
 
     context = {
-        # 'contacts': user_contacts
+        'favorites': users_favorites
     }
     return render(request, 'dashboard.html', context)

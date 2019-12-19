@@ -16319,6 +16319,18 @@ figcaption {
     text-align: justify
 }
 
+/* Dashboard favorites */
+.favorites {
+    border: none !important;
+    text-align: center
+}
+
+.favorites-info {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
   /* HTML smooth scroll */
   html {
     scroll-behavior: smooth;

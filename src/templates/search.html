@@ -47,7 +47,7 @@
 
                 </span><span class="blog_meta_item blog_meta_date"><span class="screen-reader-text"></span>
                     <time class="entry-date published updated" datetime="{{ article.timestamp|date:"Y-m-d H:i" }}">{{article.timestamp|timesince}} ago</time>
-                    </span><span class="blog_meta_item blog_meta_comments"><a href="{{ article.get_absolute_url}}#comments">{{article.comments.count}} Comment{{article.comments.count|pluralize}}</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="" style="width:25px; height:25px" alt="" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">John Doe</a></span></span>
+                    </span><span class="blog_meta_item blog_meta_comments"><a href="{{ article.get_absolute_url}}#comments">{{article.comments.count}} Comment{{article.comments.count|pluralize}}</a></span><span class="blog_meta_item blog_meta_author"><span class="author vcard"><a class="meta_author_avatar_url" href=""><img src="{{article.author.profile_picture.url}}" style="width:25px; height:25px" alt="" class="avatar avatar-25 wp-user-avatar wp-user-avatar-25 alignnone photo"></a> <a class="url fn n" href="">{{article.author.name}}</a></span></span>
                 </div>
                 <div class="entry-content blog_post_text blog_post_description">
                     <!-- Start entry-content div -->
