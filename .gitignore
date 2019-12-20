@@ -5,3 +5,9 @@
 
 /static_root/images
 /media_root
+
+*.log
+*.pot
+*.pyc
+
+.vscode
