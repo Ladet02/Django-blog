@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+
+# Added for Heroku
+import dj_database_url
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,7 +30,12 @@ SECRET_KEY = '9jx(o5#@s#3(fack5750@@!5ua!k^dv9c#)1(r+$mj=%k@wbpk'
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "lit-escarpment-53540.herokuapp.com"]
+
+# Added for Heroku
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 
 # Application definition
@@ -93,6 +102,9 @@ DATABASES = {
     }
 }
 
+# Added for Heroku
+DB_FROM_ENV = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(DB_FROM_ENV)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
