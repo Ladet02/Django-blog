@@ -31,7 +31,8 @@ DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost", "sleepy-crag-12637.herokuapp.com"]
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost',
+                 '127.0.0.1', 'sleepy-crag-12637.herokuapp.com']
 
 # Added for Heroku
 # SECRET_KEY = os.environ.get('SECRET_KEY')
