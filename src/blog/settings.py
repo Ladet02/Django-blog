@@ -30,7 +30,7 @@ SECRET_KEY = '9jx(o5#@s#3(fack5750@@!5ua!k^dv9c#)1(r+$mj=%k@wbpk'
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost", "lit-escarpment-53540.herokuapp.com"]
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "sleepy-crag-12637.herokuapp.com"]
 
 # Added for Heroku
 # SECRET_KEY = os.environ.get('SECRET_KEY')
