@@ -3,7 +3,7 @@
 
 /src/static/images
 
-/static_root/images
+/static_root
 /media_root
 
 *.log
