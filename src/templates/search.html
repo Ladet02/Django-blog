@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block title %}Search for "{{ search_query }}" | {% endblock title %}
+
 {% block content %}
 <div id="page" class="hfeed site">
     <!-- start site main container -->
@@ -14,13 +16,15 @@
                     <!-- Title screen-reader-text -->
                     <h4 class="page-title screen-reader-text">Search results</h4>
 
+    <h1>Search results for "{{ search_query }}":</h1>
 
-<main class="main_content col-md-12">
+<main class="main_content col-md-12" style="margin-top: 3em">
 
     {% comment %} <h1>Results</h1> {% endcomment %}
 
     <!-- For Page Pagination -->
     <div class="blog_posts_wrapper blog_posts_list clearfix  masonry_blog_style narrow_content_width wp-block-columns" >
+
 
 
         {% for article in search_results %}

@@ -49,7 +49,8 @@ def search(request):
 
     context = {
         'search_results': queryset,
-        'page_request_variable': page_request_variable
+        'page_request_variable': page_request_variable,
+        'search_query': str(query) or str(category_query) or str(tag_query)
     }
     return render(request, 'search.html', context)
 
