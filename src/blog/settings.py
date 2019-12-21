@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 
-# # Added for Heroku
-# import dj_database_url
+# Added for Heroku
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -102,10 +102,10 @@ DATABASES = {
     }
 }
 
-# # Added for Heroku
-# DB_FROM_ENV = dj_database_url.config(conn_max_age=600)
-# DATABASES['default'].update(DB_FROM_ENV)
-# DISABLE_COLLECTSTATIC = 1
+# Added for Heroku
+DB_FROM_ENV = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(DB_FROM_ENV)
+DISABLE_COLLECTSTATIC = 1
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
