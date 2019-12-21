@@ -28,6 +28,7 @@ SECRET_KEY = '9jx(o5#@s#3(fack5750@@!5ua!k^dv9c#)1(r+$mj=%k@wbpk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
 # DEBUG = False
 
 ALLOWED_HOSTS = ["0.0.0.0", "localhost", "sleepy-crag-12637.herokuapp.com"]
