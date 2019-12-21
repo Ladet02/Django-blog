@@ -69,7 +69,7 @@ MIDDLEWARE = [
 
 ]
 # For whitenoise serving our own static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 ROOT_URLCONF = 'blog.urls'
 
